@@ -19,7 +19,6 @@ return new class extends Migration
             ->references('id')
             ->on('stores')
             ->onDelete('cascade');
-            $table->boolean("in_stock");
             $table->timestamps();
         });
     }
