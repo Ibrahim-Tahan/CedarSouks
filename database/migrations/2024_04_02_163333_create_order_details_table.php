@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('order_details', function (Blueprint $table) {
             $table->id();
+            $table->foreign('userId')->references('id')->on('persons')->onDelete('cascade');
             $table->foreignId('productId')->references('id')->on('products')->onDelete('cascade');
             $table->string('order_information')->nullable();
             $table->date('order_date');

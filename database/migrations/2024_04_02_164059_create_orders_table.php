@@ -15,9 +15,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId("userId")->references("id")->on("users")->onDelete("cascade");
             $table->foreignId("orderDetailsId")->refernces("id")->on("order_details")->onDelete("cascade");
-            $table->string("status")->nullable();
+            $table->string("status")->nullable();//Pending/in cart/ Delivered
             $table->string('description');
             $table->timestamps();
+            
         });
     }
 
