@@ -22,10 +22,10 @@
             <div class="mapform">
                 <div class="row">
                     <div class="col-5">
-                        <input type="text" disabled class="form-control" placeholder="lat" name="latitude" id="lat">
+                        <input type="text" readonly class="form-control" placeholder="lat" name="latitude" id="lat">
                     </div>
                     <div class="col-5">
-                        <input type="text" disabled class="form-control" placeholder="lng" name="longitude" id="lng">
+                        <input type="text" readonly class="form-control" placeholder="lng" name="longitude" id="lng">
                     </div>
                     <div class="col-5">
                         <input type="text" class="form-control" placeholder="addressname" name="addressname" id="addressname">
