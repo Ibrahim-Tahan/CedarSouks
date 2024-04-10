@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class Home extends Controller
 {
   public function HomePage(){
-    return view('index');
+    return view('storeIndex');
   }
   public function Cart(){
     return view('Cart');
