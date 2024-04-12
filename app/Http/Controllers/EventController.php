@@ -3,32 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Stores;
 
-class StoreLocationController extends Controller
+class EventController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('pinShopLocation');
+        //
     }
 
+    /**
+     * Store a newly created resource in storage.
+     */
     public function store(Request $request)
     {
-        $store= new Stores;
-        $store->name = $request->input('name');
-        $store->sellerId = $request->sellerId;
-        $store->address = $request->input('address');
-        $store->description = $request->input('description');
-        $store->latitude = $request->input('latitude'); 
-        $store->longitude = $request->input('longitude');
-
-        $store->save();
-
-        return $this->index();
-
+        //
     }
 
     /**

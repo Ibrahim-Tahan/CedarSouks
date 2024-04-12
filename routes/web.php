@@ -21,3 +21,5 @@ Route::get('PinShopLocation',[StoreLocationController::class,'index']);
 Route::post('insertShopLocation',[StoreLocationController::class,'store']);
 
 
+//Route::get('makeEventindex',)
+

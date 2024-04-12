@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
-@section('content')
-
-    <nav class="navbar navbar-expand-md navbar-light absolute py-2 mb-4">
+@section('navigation')
         <div class="container">
             <div class=" navbar-collapse " id="navbarCollapse">
                 <ul class="navbar-nav mx-auto">
@@ -13,11 +11,11 @@
 
             </div>
         </div>
-    </nav>
-
+@endsection
+    @section('content')
     <div class="content">
         <h1>SHOP SIDE</h1>
-        <form action="/insertUserAddress" method="post">
+        <form action="/insertShopLocation" method="post">
             @csrf
             <div class="mapform">
                 <div class="row">
@@ -48,9 +46,11 @@
 
                 <div class="row">
                     <div class="col-5">
+                        <label for="latitude">latitude</label>
                         <input type="text" readonly class="form-control" placeholder="lat" name="latitude" id="lat">
                     </div>
                     <div class="col-5">
+                        <label for="longitude">longitude</label>
                         <input type="text" readonly class="form-control" placeholder="lng" name="longitude" id="lng">
                     </div>
                 </div>

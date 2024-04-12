@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('logo')->default('https://cdn-icons-png.flaticon.com/128/679/679746.png');
             $table->string('description');
             $table->string('address')->nullable();
-            $table->string('longitude')->nullable();
-            $table->string('lattitude')->nullable();
+            $table->double('longitude')->nullable();
+            $table->double('latitude')->nullable();
             $table->timestamps();
         });
     }
