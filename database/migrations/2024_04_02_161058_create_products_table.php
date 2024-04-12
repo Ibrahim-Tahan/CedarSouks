@@ -15,11 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string("name");
             $table->double('price');
-            $table->string('image')->nullable();
+            $table->string('image')->default('https://cdn-icons-png.flaticon.com/128/679/679720.png');
             $table->string('description');
             $table->foreignId('categoryId')->references('id')->on('categories')->onDelete('cascade');
-            $table->foreignId('storeId')->references('id')->on('stores')->onDelete('cascade');
-            $table->date('expiry_date')->nullable();
             $table->timestamps();
         });
     }

@@ -16,10 +16,7 @@ return new class extends Migration
             $table->string('addressname');
             $table->double('latitude');
             $table->double('longitude');
-            $table->foreignId('userId')
-            ->references('id')
-            ->on('persons')
-            ->onDelete('cascade');
+            $table->foreignId('userId')->references('id')->on('persons')->onDelete('cascade');
             $table->timestamps();
         });
     }
