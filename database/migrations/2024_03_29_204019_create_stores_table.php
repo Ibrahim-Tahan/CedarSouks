@@ -14,13 +14,13 @@ return new class extends Migration
         Schema::create('stores', function (Blueprint $table) {
             $table->id();
             $table->string("name");
-            $table->string('isApproved');
-            $table->foreignId("sellerId")->references("id")->on("users")->onDelete("cascade");
-            $table->string('logo')->nullable();
-            $table->string('description');
+            $table->string('isApproved')->default('pending');
+            $table->foreignId("sellerId")->references("id")->on("persons")->onDelete("cascade");
+            $table->string('logo')->default('https://cdn-icons-png.flaticon.com/128/679/679746.png');
+            $table->text('description');
             $table->string('address')->nullable();
-            $table->string('longitude')->nullable();
-            $table->string('lattitude')->nullable();
+            $table->double('longitude')->nullable();
+            $table->double('latitude')->nullable();
             $table->timestamps();
         });
     }

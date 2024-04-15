@@ -13,12 +13,9 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("userId")->references("id")->on("users")->onDelete("cascade");
-            $table->foreignId("orderDetailsId")->refernces("id")->on("order_details")->onDelete("cascade");
-            $table->string("status")->nullable();//Pending/in cart/ Delivered
-            $table->string('description');
+            $table->foreignId('userId')->references('id')->on('persons')->onDelete('cascade');
+            $table->string("status")->default('inCart');
             $table->timestamps();
-            
         });
     }
 

@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
-@section('content')
 
-<nav class="navbar navbar-expand-md navbar-light absolute py-2 mb-4">
+@section('navigation')
+    
     <div class="container">
         <div class=" navbar-collapse " id="navbarCollapse">
             <ul class="navbar-nav mx-auto">
@@ -13,7 +13,11 @@
 
         </div>
     </div>
-</nav>
+
+@endsection
+
+
+@section('content')
 
     <div class="content">
         <h1>USER/SHOP SIDE</h1>
