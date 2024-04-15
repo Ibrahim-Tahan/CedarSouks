@@ -28,7 +28,6 @@ class StoreLocationController extends Controller
         $store->save();
 
         return $this->index();
-
     }
 
     /**

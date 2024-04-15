@@ -1,20 +1,20 @@
 @extends('layouts.app')
 
-@section('content')
 
-<nav class="navbar navbar-expand-md navbar-light absolute py-2 mb-4">
-    <div class="container">
-        <div class=" navbar-collapse " id="navbarCollapse">
-            <ul class="navbar-nav mx-auto">
-                <a href="" class="navbar-brand">
-                    <h2 class="d-inline align-middle"><strong>Get Users Location</strong></h2>
-                </a>
-            </ul>
+@section('navigation')
+        <div class="container">
+            <div class=" navbar-collapse " id="navbarCollapse">
+                <ul class="navbar-nav mx-auto">
+                    <a href="" class="navbar-brand">
+                        <h2 class="d-inline align-middle"><strong>Get Users Location</strong></h2>
+                    </a>
+                </ul>
 
+            </div>
         </div>
-    </div>
-</nav>
+@endsection
 
+@section('content')
     <div class="content">
         <h1>SHOP SIDE ONLY</h1>
 
