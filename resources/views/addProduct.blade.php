@@ -66,8 +66,8 @@
                 <tr>
                     <th>Name</th>
                     <th>Price</th>
+                    <th>Image</th>
                     <th>Description</th>
-                    <th>Store name</th>
                     <th>Category</th>
                     <th>Actions</th>
                 </tr>
@@ -76,8 +76,8 @@
                 <tr>
                     <td><input type="text" name="name" placeholder="Name"></td>
                     <td><input type="number" name="price" placeholder="Price"></td>
+                    <td><input type="img" name="image" placeholder="Image"></td>
                     <td><input type="text" name="description" placeholder="Description"></td>
-                    <td><input type="text" name="store_name" placeholder="Store name"></td>
                     <td><input type="text" name="category" placeholder="Category"></td>
 
                 </tr>

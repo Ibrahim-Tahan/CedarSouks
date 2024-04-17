@@ -66,26 +66,27 @@
     <table class="content-table">
         <thead>
           <tr>
+            <th>Category</th>
             <th>Name</th>
             <th>Price</th>
             <th>Description</th>
-            <th>Store name</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
+        @foreach($orderDetails as $itm)
           <tr>
-            <td></td>
-            <td></td>
-            <td></td>
+          <td>{{$productCategoryName}}</td>
+            <td> {{ $productName }}</td>
+            <td> {{ $productPrice }}</td>
             <td></td>
           </tr>
+@endforeach
           <tr>
-       
           <tr class="active-row">
             <td> Total Price:</td>
+
 </tr>
-<td><button onclick="redirectToCartPage('{{ route('CheckoutRoute') }}')">Checkout</button></td>       
  </tbody>
             </table>
 </form>

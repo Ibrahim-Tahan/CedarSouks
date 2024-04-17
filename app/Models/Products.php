@@ -8,16 +8,24 @@ use Illuminate\Database\Eloquent\Model;
 class Products extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'name',
+        'price',
+        'image',
+        'description',
+        'categoryId',
+    ];
+    
     public function getCategory(){
-        return $this->belongsTo(Categories::class);
+        return $this->belongsTo(Categories::class,'categoryId');
     }
-    public function getOrders(){
-        return $this->belongsToMany(Orders::class,'order_details','product_id','order_id');
-    }
-public function getStores(){
-    return $this->belongsTo(Products::class);
+    public function getOrderDetails(){
+    return $this->hasMany(Order_details::class,'productId');
 }
-public function getOrderDetails(){
-    return $this->hasMany(Order_details::class);
+    public function getEventUserProduct(){
+    return $this->hasOne(event_user_product::class,'productId');
+}
+    public function getWishlist(){
+    return $this->hasMany(wishlist::class,'productId');
 }
 }

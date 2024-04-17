@@ -1,8 +1,8 @@
 @extends('layouts.master')
-@section('content')
 @section('title')
 <title>Exotic world</title>
 @endsection
+@section('content')
 <body>
     <nav id="nav">
         <div class="navTop">
@@ -20,7 +20,7 @@
             <div class="navItem">
                 <span class="limitedOffer">Limited Offer!</span>
 <div class="cart-button">
-<button onclick="redirectToCartPage('{{ url('CartRoute') }}')">
+<button onclick="redirectToCartPage('{{ url('cartView') }}')">
     <i class="fas fa-shopping-cart"></i>
 </button>
 
@@ -28,7 +28,7 @@
 <span id="cart-count">0</span>
 
 <div>
-  <button href="#" class="wishlist-icon"onclick="redirectToCartPage('{{ url('WishListRoute') }}')" title="Add to Favorites">
+  <button href="#" class="wishlist-icon"onclick="redirectToCartPage('{{ url('addToWishlist') }}')" title="Add to Favorites">
     <i class="fas fa-star"></i>
     <span class="favorites">Wishlist</span>
 </button>
@@ -116,15 +116,24 @@
     @foreach($products1 as $product)
     <div class="product-list" data-category="1">
         <div class="product-item">
-            <h4 class="product-title">{{$product->id}}</h4>
-            <span class="product-price">{{$product->name}}</span>
+            <h4 class="product-title">{{$product->name}}</h4>
+            <span class="product-price">{{$product->id}}</span>
             <span class="product-price">{{$product->price}}</span>
             <h3>{{$product->description}}</h3>
             <h3>{{$product->categoryId}}</h3>
-            <h3>{{$product->storeId}}</h3>
-            <div class="product-buttons">
-                <button class="add-to-cart">Add to Cart</button>
-                <button class="add-to-wishlist">Add to Wishlist</button>
+            
+            <form action="{{ route('addToCart') }}" method="post">
+    @csrf
+    <input type="hidden" name="productId" value="{{ $product->id }}">
+    <input type="number" value="1" min="1" name="quantity" style="width: 80px;">
+
+    <button type="submit" class="add-to-cart" data-product-id="{{ $product->id }}">Add to Cart</button>
+</form>
+<form  action="{{ route('wishlistRoute') }}" method="post">
+    @csrf
+<button type="submit" class="add-to-wishlist" data-product-id="{{ $product->id }}">Add to favorites</button>
+    <input type="hidden" name="productId" value="{{ $product->id }}">
+</form>
             </div>
         </div>
     </div>
@@ -132,16 +141,18 @@
 @foreach($products2 as $product)
     <div class="product-list" data-category="2">
         <div class="product-item">
-            <h4 class="product-title">{{$product->id}}</h4>
-            <span class="product-price">{{$product->name}}</span>
+            <h4 class="product-title">{{$product->name}}</h4>
+            <span class="product-price">{{$product->id}}</span>
             <span class="product-price">{{$product->price}}</span>
             <h3>{{$product->description}}</h3>
             <h3>{{$product->categoryId}}</h3>
-            <h3>{{$product->storeId}}</h3>
-            <div class="product-buttons">
-                <button class="add-to-cart">Add to Cart</button>
-                <button class="add-to-wishlist">Add to Wishlist</button>
-            </div>
+            <form action="{{ route('addToCart') }}" method="post">
+    @csrf
+    <input type="hidden" name="productId" value="{{ $product->id }}">
+    <input type="number" value="1" min="1" name="quantity" style="width: 80px;">
+    <button type="submit" class="add-to-cart" data-product-id="{{ $product->id }}">Add to Cart</button>
+</form>
+
         </div>
     </div>
 @endforeach
@@ -153,35 +164,58 @@
             <span class="product-price">{{$product->price}}</span>
             <h3>{{$product->description}}</h3>
             <h3>{{$product->categoryId}}</h3>
-            <h3>{{$product->storeId}}</h3>
-            <div class="product-buttons">
-                <button class="add-to-cart">Add to Cart</button>
-                <button class="add-to-wishlist">Add to Wishlist</button>
-            </div>
+            <form action="{{ route('addToCart') }}" method="post">
+    @csrf
+    <input type="hidden" name="productId" value="{{ $product->id }}">
+    <input type="number" value="1" min="1" name="quantity" style="width: 80px;">
+    <button type="submit" class="add-to-cart" data-product-id="{{ $product->id }}">Add to Cart</button>
+</form>
+<form  action="{{ route('wishlistRoute') }}" method="post">
+    @csrf
+<button type="submit" class="add-to-wishlist" data-product-id="{{ $product->id }}">Add to favorites</button>
+<input type="hidden" name="productId" value="{{ $product->id }}">
+</form>  
+     
+
         </div>
     </div>
 @endforeach
 @foreach($products4 as $product)
     <div class="product-list" data-category="4">
         <div class="product-item">
+            <h4 class="product-title">{{$product->name}}</h4>
+            <span class="product-price">{{$product->id}}</span>
+            <span class="product-price">{{$product->price}}</span>
+            <h3>{{$product->description}}</h3>
+            <h3>{{$product->categoryId}}</h3>
+            <form action="{{ route('addToCart') }}" method="post">
+    @csrf
+    <input type="hidden" name="productId" value="{{ $product->id }}">
+    <input type="number" value="1" min="1" name="quantity" style="width: 80px;">
+    <button type="submit" class="add-to-cart" data-product-id="{{ $product->id }}">Add to Cart</button>
+</form>
+
+        </div>
+    </div>
+@endforeach
+@foreach($products5 as $product)
+    <div class="product-list" data-category="5">
+        <div class="product-item">
             <h4 class="product-title">{{$product->id}}</h4>
             <span class="product-price">{{$product->name}}</span>
             <span class="product-price">{{$product->price}}</span>
             <h3>{{$product->description}}</h3>
             <h3>{{$product->categoryId}}</h3>
-            <h3>{{$product->storeId}}</h3>
-            <div class="product-buttons">
-                <button class="add-to-cart">Add to Cart</button>
-                <button class="add-to-wishlist">Add to Wishlist</button>
-            </div>
+            <form action="{{ route('addToCart') }}" method="post">
+    @csrf
+    <input type="hidden" name="productId" value="{{ $product->id }}">
+    <input type="number" value="1" min="1" name="quantity" style="width: 80px;">
+    <button type="submit" class="add-to-cart" data-product-id="{{ $product->id }}">Add to Cart</button>
+</form>
+
         </div>
     </div>
 @endforeach
-
-
-
-
-
 
 <div class='main-content'>
 
@@ -330,6 +364,11 @@
             });
         });
     });
+});
+
+document.getElementById('search-toggle').addEventListener('click', function() {
+    var searchInput = document.querySelector('.searchInput').value;
+    window.location.href = "{{ route('search') }}?searchInput=" + searchInput;
 });
 </script>
 

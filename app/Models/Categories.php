@@ -8,8 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Categories extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'name', 'description', 'store_id'
+    ];
     public function getProducts(){
-return $this->hasMany(Products::class);
+        return $this->hasMany(Products::class,'productId');
     }
     public function getStores(){
         return $this->belongsTo(Stores::class,'store_id','id');

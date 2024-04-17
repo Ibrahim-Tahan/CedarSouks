@@ -1,5 +1,4 @@
 @extends('layouts.master')
-@section('content')
 @section('customcss')
 <style>
 .content-table {
@@ -50,38 +49,38 @@
         <h1 class="page-title">Saved products:</h1>
     </div>
 @endsection
+
+@section('content')
     <table class="content-table">
         <thead>
-            
-          <tr>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Description</th>
-            <th>Store name</th>
-            <th>Actions</th>
-          </tr>
+            <tr>
+                <th>Category</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>Domenic</td>
-            <td>88,110</td>
-            <td>dcode</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Sally</td>
-            <td>72,400</td>
-            <td>Students</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Nick</td>
-            <td>52,300</td>
-            <td>dcode</td>
-          </tr>
-        </tbody>
-      </table>
-</body>
+        @foreach ($wishlists as $wishlist)
+<tr>
+    <td></td>
+    <td>{{ $wishlist->getProduct->name }}</td>
+    <td>{{ $wishlist->getProduct->price }}</td>
+    <td>{{ $wishlist->getProduct->description }}</td>
+    <td>
+        <form action="{{ route('wishlist',['id' => $wishlist->id]) }}" method="POST">
+            @csrf
+            @method('DELETE')
+            <input type="hidden" name="wishlist_id" value="{{ $wishlist->id }}">
+            <a href="{{route('wishlist',['id'=>$wishlist->id])}}"  value="delete">Delete </a>      
+                
+            </form>
+    </td>
+</tr>
+@endforeach
 
+
+        </tbody>
+    </table>
 @endsection
