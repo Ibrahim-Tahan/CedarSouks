@@ -62,38 +62,65 @@
         <h1 class="page-title">Shopping Cart</h1>
     </div>
 @endsection
-<form >
+<form>
     <table class="content-table">
         <thead>
-          <tr>
-            <th>Category</th>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Description</th>
-            <th>Actions</th>
-          </tr>
+            <tr>
+                <th>Store</th>
+                <th>Category</th>
+                <th>Order id</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Description</th>
+                <th>Quantity</th>
+                <th>Actions</th>
+            </tr>
         </thead>
         <tbody>
-        @foreach($orderDetails as $itm)
-          <tr>
-          <td>{{$productCategoryName}}</td>
-            <td> {{ $productName }}</td>
-            <td> {{ $productPrice }}</td>
-            <td></td>
-          </tr>
-@endforeach
-          <tr>
-          <tr class="active-row">
-            <td> Total Price:</td>
-
-</tr>
- </tbody>
-            </table>
+            @php
+                $totalPrice = 0;
+            @endphp
+            @foreach($orderDetails as $itm)
+                @php
+                    $totalPrice+=$itm->getProducts->price*$itm->quantity;
+                @endphp
+                <tr>
+                <td>{{$itm->getProducts->getCategory->getStores->name}}</td>
+                    <td>{{ $itm->getProducts->getCategory->name }}</td>
+                    <td>{{$itm->getOrders->id}}</td>
+                    <td>{{ $itm->getProducts->name }}</td>
+                    <td>{{ $itm->getProducts->price }}$</td>
+                    <td>{{ $itm->getProducts->description }}</td>
+                    <td>{{$itm->quantity}}</td>
+                   <td>
+                        <form action="{{route('deleteProduct',['id'=>$itm->id]) }}" method="post">
+                            @csrf
+                            <a href="{{route('deleteProduct',['id'=>$itm->id]) }}" value="delete">Remove item</a>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
+            <tr class="active-row">
+                <td>Total Price:</td>
+                <td>{{ $totalPrice }} $</td> 
+            </tr>
+            <tr>
+                <td>
+                    <form action ="{{route('CheckoutPage')}}" method="post">
+                        <a href="{{route('CheckoutPage')}}">Proceed to checkout with({{$totalPrice}}$)</a>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </form>
+
 <script>
       function redirectToCartPage(url) {
         window.location.href = url;
     }
+
+
     </script>
 </body>
 @endsection

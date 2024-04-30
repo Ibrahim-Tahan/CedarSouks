@@ -7,6 +7,11 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\AuthenticationController;
+
+
 
 
 
@@ -22,12 +27,18 @@ Route::get('CheckoutRoute',[Home::class,'Checkout']);
 //Route::post('CartRoute', [DataController::class,'addToCart']);
 Route::get('cartView',[CartController::class,'cartView'])->name('cartView');
 Route::post('addToCart', [CartController::class,'AddToCart'])->name('addToCart');
+Route::get('deleteProduct/{id}',[CartController::class,'delete'])->name('deleteProduct');
 Route::get('search',[SearchController::class,'search'])->name('search');
 
 Route::get('addToWishlist',[WishlistController::class,'index'])->name('addToWishlist');
 Route::post('wishlistRoute', [WishlistController::class,'AddToWishlist'])->name('wishlistRoute');
 Route::get('wishlist/{id}',[WishlistController::class,'destroy'])->name('wishlist');
 
-Route::get('/initiate','App\Http\Controllers\PusherController@index');
-Route::post('broadcast','App\Http\Controllers\PusherController@broadcast');
-Route::post('receive','App\Http\Controllers\PusherController@receive');
+Route::get('CheckoutPage',[CheckoutController::class,'index'])->name('CheckoutPage');
+Route::post('ChangeOrderStatus',[CheckoutController::class,'ChangeStatus'])->name('ChangeOrderStatus');
+
+Route::get('CryptoPayment',[PaymentController::class,'CryptoView'])->name('CryptoPayment');
+Route::get('/pay', [PaymentController::class, 'redirectToGateway'])->name('pay');
+
+Route::get('Login',[AuthenticationController::class,'index'])->name('Login');
+Route::post('CheckLogin', [AuthenticationController::class, 'authenticateUser'])->name('CheckLogin');

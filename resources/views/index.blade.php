@@ -19,28 +19,31 @@
             </div>
             <div class="navItem">
                 <span class="limitedOffer">Limited Offer!</span>
+                
+<form action="{{route('cartView')}}"  method="get">
 <div class="cart-button">
-<button onclick="redirectToCartPage('{{ url('cartView') }}')">
+<button type="submit">
     <i class="fas fa-shopping-cart"></i>
 </button>
-
 </div>
+</form>
 <span id="cart-count">0</span>
 
 <div>
-  <button href="#" class="wishlist-icon"onclick="redirectToCartPage('{{ url('addToWishlist') }}')" title="Add to Favorites">
+    <form action="{{route('addToWishlist')}}"  method="get">
+        @csrf
+  <button class="wishlist-icon" type="submit" title="Add to Favorites">
     <i class="fas fa-star"></i>
-    <span class="favorites">Wishlist</span>
+    <a href="{{route('addToWishlist')}}">Wishlist</a>
 </button>
+</form>
 </div>
             </div>
         </div>
         <div class="navBottom">
-    <h3 class="menuItem" data-category="1">Exclusive Offers</h3>
-    <h3 class="menuItem" data-category="2">Soft Drink & Sports drinks</h3>
-    <h3 class="menuItem" data-category="3">Exotic chips</h3>
-    <h3 class="menuItem" data-category="4">Healthy section</h3>
-    <h3 class="menuItem" data-category="5">Candies and Cakes</h3>
+    @foreach($categories as $category)
+        <h3 class="menuItem" data-category="{{ $category->id }}">{{ $category->name }}</h3>
+    @endforeach
 </div>
 
 </nav>
@@ -113,109 +116,43 @@
         </div>
 
     </div>
-    @foreach($products1 as $product)
-    <div class="product-list" data-category="1">
-        <div class="product-item">
-            <h4 class="product-title">{{$product->name}}</h4>
-            <span class="product-price">{{$product->id}}</span>
-            <span class="product-price">{{$product->price}}</span>
-            <h3>{{$product->description}}</h3>
-            <h3>{{$product->categoryId}}</h3>
-            
-            <form action="{{ route('addToCart') }}" method="post">
-    @csrf
-    <input type="hidden" name="productId" value="{{ $product->id }}">
-    <input type="number" value="1" min="1" name="quantity" style="width: 80px;">
+    @foreach ($productsByCategory as $categoryId => $products)
+    <div class="product-list" data-category="{{ $categoryId }}">
+        @if ($products)
+            @foreach ($products as $product)
+                <div class="product-item">
+                    <h4 class="product-title">{{ $product->name }}</h4>
+                    <img src="{{ $product->image }}" alt="Product Image" class="product-image">
+                    <h4 class="product-price">{{ $product->price }}$</h4>
+                    <h4>{{ $product->description }}</h4>
+                  
 
-    <button type="submit" class="add-to-cart" data-product-id="{{ $product->id }}">Add to Cart</button>
-</form>
-<form  action="{{ route('wishlistRoute') }}" method="post">
-    @csrf
-<button type="submit" class="add-to-wishlist" data-product-id="{{ $product->id }}">Add to favorites</button>
-    <input type="hidden" name="productId" value="{{ $product->id }}">
-</form>
-            </div>
-        </div>
+           
+                  
+                <div class="button-container">
+                        <form action="{{ route('addToCart') }}" method="post">
+                            @csrf
+                            <input type="hidden" name="productId" value="{{ $product->id }}">
+                            <input type="number" value="1" min="1" name="quantity" style="width: 80px;">
+                            <button type="submit" class="add-to-cart" data-product-id="{{ $product->id }}">Add to Cart</button>
+
+                        </form>
+                        <form action="{{ route('wishlistRoute') }}" method="post">
+                            @csrf
+                            <button type="submit" class="add-to-wishlist" data-product-id="{{ $product->id }}">Add to Wishlist</button>
+                            <input type="hidden" name="productId" value="{{ $product->id }}">
+
+                        </form>
+                        </div>
+                   
+             
+            @endforeach
+       
+        @endif
     </div>
 @endforeach
-@foreach($products2 as $product)
-    <div class="product-list" data-category="2">
-        <div class="product-item">
-            <h4 class="product-title">{{$product->name}}</h4>
-            <span class="product-price">{{$product->id}}</span>
-            <span class="product-price">{{$product->price}}</span>
-            <h3>{{$product->description}}</h3>
-            <h3>{{$product->categoryId}}</h3>
-            <form action="{{ route('addToCart') }}" method="post">
-    @csrf
-    <input type="hidden" name="productId" value="{{ $product->id }}">
-    <input type="number" value="1" min="1" name="quantity" style="width: 80px;">
-    <button type="submit" class="add-to-cart" data-product-id="{{ $product->id }}">Add to Cart</button>
-</form>
 
-        </div>
-    </div>
-@endforeach
-@foreach($products3 as $product)
-    <div class="product-list" data-category="3">
-        <div class="product-item">
-            <h4 class="product-title">{{$product->id}}</h4>
-            <span class="product-price">{{$product->name}}</span>
-            <span class="product-price">{{$product->price}}</span>
-            <h3>{{$product->description}}</h3>
-            <h3>{{$product->categoryId}}</h3>
-            <form action="{{ route('addToCart') }}" method="post">
-    @csrf
-    <input type="hidden" name="productId" value="{{ $product->id }}">
-    <input type="number" value="1" min="1" name="quantity" style="width: 80px;">
-    <button type="submit" class="add-to-cart" data-product-id="{{ $product->id }}">Add to Cart</button>
-</form>
-<form  action="{{ route('wishlistRoute') }}" method="post">
-    @csrf
-<button type="submit" class="add-to-wishlist" data-product-id="{{ $product->id }}">Add to favorites</button>
-<input type="hidden" name="productId" value="{{ $product->id }}">
-</form>  
-     
 
-        </div>
-    </div>
-@endforeach
-@foreach($products4 as $product)
-    <div class="product-list" data-category="4">
-        <div class="product-item">
-            <h4 class="product-title">{{$product->name}}</h4>
-            <span class="product-price">{{$product->id}}</span>
-            <span class="product-price">{{$product->price}}</span>
-            <h3>{{$product->description}}</h3>
-            <h3>{{$product->categoryId}}</h3>
-            <form action="{{ route('addToCart') }}" method="post">
-    @csrf
-    <input type="hidden" name="productId" value="{{ $product->id }}">
-    <input type="number" value="1" min="1" name="quantity" style="width: 80px;">
-    <button type="submit" class="add-to-cart" data-product-id="{{ $product->id }}">Add to Cart</button>
-</form>
-
-        </div>
-    </div>
-@endforeach
-@foreach($products5 as $product)
-    <div class="product-list" data-category="5">
-        <div class="product-item">
-            <h4 class="product-title">{{$product->id}}</h4>
-            <span class="product-price">{{$product->name}}</span>
-            <span class="product-price">{{$product->price}}</span>
-            <h3>{{$product->description}}</h3>
-            <h3>{{$product->categoryId}}</h3>
-            <form action="{{ route('addToCart') }}" method="post">
-    @csrf
-    <input type="hidden" name="productId" value="{{ $product->id }}">
-    <input type="number" value="1" min="1" name="quantity" style="width: 80px;">
-    <button type="submit" class="add-to-cart" data-product-id="{{ $product->id }}">Add to Cart</button>
-</form>
-
-        </div>
-    </div>
-@endforeach
 
 <div class='main-content'>
 
@@ -245,12 +182,10 @@
     <div class="gallery">
         <div class="galleryItem">
             <h1 class="galleryTitle">Enjoy!</h1>
-            <img src="https://images.pexels.com/photos/9295809/pexels-photo-9295809.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-                alt="" class="galleryImg">
+            <img src="https://www.bing.com/images/search?view=detailV2&ccid=Bu8Bn8Ii&id=BCD73A1AF1D8C7595F9AB3A7611C200561D6EA6E&thid=OIP.Bu8Bn8IiCaA_d0o-1I87ZwHaHa&mediaurl=https%3a%2f%2ffastly.4sqi.net%2fimg%2fgeneral%2f600x600%2f30078804_nipDUc08n-fmFT4sxygD4RyeF0imnDcdTg2NS9OfyLg.jpg&cdnurl=https%3a%2f%2fth.bing.com%2fth%2fid%2fR.06ef019fc22209a03f774a3ed48f3b67%3frik%3dburWYQUgHGGnsw%26pid%3dImgRaw%26r%3d0&exph=600&expw=600&q=exotic+snacks+store+image&simid=608014013756440072&FORM=IRPRST&ck=61980D42FD02EF7E8B77FE88EA0EF2FA&selectedIndex=0&itb=0" alt =''>
+             
         </div>
         <div class="galleryItem">
-            <img src="https://images.pexels.com/photos/1040427/pexels-photo-1040427.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-                alt="" class="galleryImg">
             <h1 class="galleryTitle">This is the First exotic snack i buy</h1>
         </div>
         <div class="galleryItem">
@@ -300,13 +235,7 @@
             </div>
             <div class="footerMenu">
                 <h1 class="fMenuTitle">Products</h1>
-                <ul class="fList">
-                    <li class="fListItem">Offers</li>
-                    <li class="fListItem">Soft Drink & Sports drinks</li>
-                    <li class="fListItem">Exotic chips</li>
-                    <li class="fListItem">Healthy Section</li>
-                    <li class="fListItem">Candies and Cakes</li>
-                </ul>
+          
             </div>
         </div>
         <div class="footerRight">

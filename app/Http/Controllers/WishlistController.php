@@ -11,39 +11,37 @@ use App\Models\Order_details;
 
 class WishlistController extends Controller
 {
-   public function index(){
-    return view('Wishlist');
-   }
+    public function index()
+    {
+        $wishlists = wishlist::all(); 
+        return view('Wishlist', compact('wishlists'));
+    }
   public function AddToWishlist(Request $request)
   {
       $user = Orders::where('status', 'inCart')->first();
       $buyersId = $user->id;
       $productId = $request->input('productId');
-      $product = Products::find($productId);
-      
-      if (!$product) {
-          return redirect()->back()->with('error', 'Product not found.');
+      $product = Products::find($productId); 
+      $productId = $request->input('productId');
+      $existingWishlistItem = wishlist::where('productId', $productId)
+                                      ->first();
+        if ($existingWishlistItem) {
+          return "Item already exists in the wishlist.";
       }
-      
       $wishlist = new wishlist();
       $wishlist->productId = $productId;
       $wishlist->buyersId = $buyersId;
       $wishlist->save();
-  
       $wishlists = wishlist::where('buyersId', $buyersId)->with('getProduct')->get();
-  
-      $data = [
-          'wishlists' => $wishlists,
-          'user' => $user,
-      ];
-  
-      return view('Wishlist', $data);
+      return view('Wishlist',compact('wishlists'));
   }
+
+  
   public function destroy($id){
-   $wishlist = wishlist::findOrFail($id);
-   $wishlist->delete();
-return view('Wishlist');
-}
+    $wishlist=wishlist::find($id);
+    $wishlist->delete();
+    return redirect()->route('addToWishlist');
+    }
 
   
 }

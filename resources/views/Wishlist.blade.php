@@ -64,9 +64,9 @@
         <tbody>
         @foreach ($wishlists as $wishlist)
 <tr>
-    <td></td>
+    <td>{{$wishlist->getProduct->getCategory->name}}</td>
     <td>{{ $wishlist->getProduct->name }}</td>
-    <td>{{ $wishlist->getProduct->price }}</td>
+    <td>{{ $wishlist->getProduct->price }}$</td>
     <td>{{ $wishlist->getProduct->description }}</td>
     <td>
         <form action="{{ route('wishlist',['id' => $wishlist->id]) }}" method="POST">
