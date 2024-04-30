@@ -1,0 +1,128 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+  }
+  
+  .add-store {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 0 10px;
+    background: linear-gradient(120deg, #2980b9, #3498db);
+  }
+  
+  .add-store form {
+    padding: 25px;
+    background: #fff;
+    max-width: 600px; /* Increase the max-width to 600px or adjust it to your desired width */
+    width: 100%;
+    border-radius: 7px;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
+  }
+  .add-store form h2 {
+    font-size: 27px;
+    text-align: center;
+    margin: 0px 0 30px;
+  }
+  
+  .add-store form .form-group {
+    margin-bottom: 15px;
+    position: relative;
+  }
+  
+  .add-store form label {
+    display: block;
+    font-size: 15px;
+    margin-bottom: 7px;
+  }
+  
+  .add-store form input,
+  .add-store form select {
+    height: 30px;
+    padding: 10px;
+    width: 95%;
+    font-size: 15px;
+    outline: none;
+    background: #fff;
+    border-radius: 3px;
+    border: 1px solid #bfbfbf;
+  }
+  
+  .add-store form input:focus,
+  .add-store form select:focus {
+    border-color: #9a9a9a;
+  }
+  
+  .add-store form input.error,
+  .add-store form select.error {
+    border-color: #f91919;
+    background: #f9f0f1;
+  }
+  
+  .add-store form small {
+    font-size: 14px;
+    margin-top: 5px;
+    display: block;
+    color: #f91919;
+  }
+  
+  .add-store form .password i {
+    position: absolute;
+    right: 0px;
+    height: 45px;
+    top: 28px;
+    font-size: 13px;
+    line-height: 45px;
+    width: 45px;
+    cursor: pointer;
+    color: #939393;
+    text-align: center;
+  }
+  
+  .add-store .submit-btn {
+    margin-top: 30px;
+  }
+  
+  .add-store .submit-btn input {
+    color: white;
+    border: none;
+    height: auto;
+    font-size: 16px;
+    padding: 13px 0;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    text-align: center;
+    background: #a2ded0; /* Change the button background color to green pastel */
+    transition: 0.2s ease;
+  }
+  
+  .add-store .submit-btn input:hover {
+    background: #7bc6b0; /* Change the button hover background color to a darker shade of green pastel */
+  }
+  
+  .add-store .submit-btn input[value="Create"] {
+    width: 100%;
+  }
+  
+  
+  
+  
+  
+  .add-store {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 0 10px;
+    background: linear-gradient(120deg, #a2c7e5, #8fbfe0); /* Change the background gradient colors to match blue pastel */
+  }
+  .add-store .submit-btn input[value="Update"] {
+    background: #2e86de; /* Change the button background color */
+  }
+  
+  .add-store .submit-btn input:hover {
+    background: #1e6ec7; /* Change the button hover background color */
+  }

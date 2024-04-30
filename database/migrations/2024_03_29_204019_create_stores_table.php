@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('isApproved')->default('pending');
             $table->foreignId("sellerId")->references("id")->on("persons")->onDelete("cascade");
             $table->string('logo')->default('https://cdn-icons-png.flaticon.com/128/679/679746.png');
+            $table->string('path')->nullable();
             $table->text('description');
             $table->string('address')->nullable();
             $table->double('longitude')->nullable();
