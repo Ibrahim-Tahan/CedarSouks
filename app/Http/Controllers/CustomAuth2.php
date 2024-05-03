@@ -8,7 +8,8 @@ use App\Models\Categories;
 use App\Models\Products;
 use App\Models\persons;
 use App\Models\Image;
-use Session;
+use Illuminate\Support\Facades\Session;
+
 
 class CustomAuth2 extends Controller
 {

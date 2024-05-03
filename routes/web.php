@@ -69,26 +69,6 @@ Route::get('/registration/verify-email/{verification_code}', [CustomAuthControll
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Route::get('/addstore/{id}', [CustomAuth2::class, 'add'])->name('add');
 
 //put name to invoke this route in addstore.blade.php
@@ -162,26 +142,6 @@ Route::get('/admin',[Admin::class, 'adminpage']);
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //order feature
 
 Route::get('/allorder',[Order::class, 'order'])->name('allorder');
@@ -193,26 +153,3 @@ Route::get('detail2/{id}',[Order::class, 'detail2'])->name('detail2');
 
 //Seller Reports
 Route::post('/reports/{id}',[Order::class,'date'])->name('date');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

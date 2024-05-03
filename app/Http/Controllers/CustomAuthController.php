@@ -6,11 +6,12 @@ use Illuminate\Http\Request;
 use App\Models\persons;
 use App\Models\orders;
 use App\Models\stores;
-use Hash;
-use Mail;
-use Str;
-use Session;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Session;
 use Laravel\Socialite\Facades\Socialite;
+
 use App\Mail\RegisterMail;
 
 

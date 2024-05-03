@@ -156,7 +156,7 @@
       <div class="option">
         <h3>Events</h3>
         <p>Create Events.</p>
-        <a href="/allorder">Events </a>
+        <a href="/makeEventindex">Events </a>
       </div>
       <div class="option">
         <h3>Logout</h3>
