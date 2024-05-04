@@ -8,13 +8,7 @@ use Illuminate\Notifications\Notifiable;
 
 class persons extends Authenticatable
 {
-    use HasFactory, Notifiable;
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<string>
-     */
+    use HasFactory;
     protected $fillable = [
         'fullname',
         'email',
@@ -22,52 +16,22 @@ class persons extends Authenticatable
         'birth_date',
         'user_type',
     ];
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array<string>
-     */
-    protected $hidden = [
-        'password',
-    ];
-
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
-
-    public function getStore()
-    {
-        return $this->hasMany(Stores::class, 'sellerId');
+    public function getStore(){
+        return $this->hasMany(Stores::class,'sellerId');
     }
-
-    public function getFavStores()
-    {
-        return $this->belongsToMany(Favorites::class, 'favorites', 'userId', 'storeId');
+    public function getFavStores(){
+        return $this->belongsToMany(Favorites::class,'favorites','userId','storeId');
     }
-
-    public function getOrder()
-    {
-        return $this->hasMany(Orders::class, 'userId', 'id');
+    public function getOrder(){
+        return $this->hasMany(Orders::class,'userId','id');
     }
-
-    public function getAddresses()
-    {
-        return $this->hasMany(Address::class, 'userId');
+    public function getAdresses(){
+        return $this->hasMany(address::class,'userId');
     }
-
-    public function getWishlist()
-    {
-        return $this->hasOne(Wishlist::class, 'buyersId');
+    public function getWishlists(){
+        return $this->hasOne(wishlist::class, 'buyersId');
     }
-
-    public function getEvents()
-    {
-        return $this->hasMany(EventUserProduct::class, 'userId');
+    public function getEvents(){
+        return $this->hasMany(event_user_product::class,'userId');
     }
 }

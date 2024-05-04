@@ -31,7 +31,7 @@ class Stores extends Model
         return $this->belongsToMany(Orders::class,'order_stores','store_id','order_id');
     }
     public function getCategories(){
-        return $this->hasMany(Categories::class,'storeId');
+        return $this->hasMany(Categories::class,'store_id','id');
     }
     public function getEvents(){
         return $this->hasMany(events::class,'storeId');

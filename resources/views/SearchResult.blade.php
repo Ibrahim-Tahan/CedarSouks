@@ -6,6 +6,7 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
+                        <th>Store</th>
                         <th>Name</th>
                         <th>Price</th>
                     </tr>
@@ -13,6 +14,7 @@
                 <tbody>
                     @foreach ($products as $product)
                         <tr>
+                            <td>{{$product->getCategory->getStores->name}}</td>
                             <td>{{ $product->name }}</td>
                             <td>{{ $product->price }}</td>
                         </tr>

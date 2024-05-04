@@ -9,11 +9,16 @@
             <div class="navItem">
                 <img src="./img/sneakers.png" alt="">
             </div>
+    
             <div class="navItem">
                 <div class="search">
-                    <input type="text" placeholder="Search..." class="searchInput" >
-                    <button id="search-toggle" class="search-toggle">
+                <form id="searchForm" action="{{ route('search', ['id' => $store->id]) }}" method="GET">
+    <input type="text" placeholder="Search..." class="searchInput" name="searchInput">
+    <button type="submit" id="search-toggle" class="search-toggle">
         <i class="fas fa-search"></i>
+    </button>
+</form>
+
     </button>
                 </div>
             </div>
@@ -36,6 +41,11 @@
     <i class="fas fa-star"></i>
     <a href="{{route('addToWishlist')}}">Wishlist</a>
 </button>
+</form>
+</div>
+<div>
+<form action="{{ route('messages', ['id' => Session::get('loginId')]) }}" method="get">
+        <button type="submit">Live chat</button>
 </form>
 </div>
             </div>
@@ -122,35 +132,28 @@
             @foreach ($products as $product)
                 <div class="product-item">
                     <h4 class="product-title">{{ $product->name }}</h4>
-                    <img src="{{ $product->image }}" alt="Product Image" class="product-image">
+                    <img src="{{ $product->path }}" alt="Product Image" class="product-image">
                     <h4 class="product-price">{{ $product->price }}$</h4>
                     <h4>{{ $product->description }}</h4>
-                  
-
-           
-                  
-                <div class="button-container">
-                        <form action="{{ route('addToCart') }}" method="post">
-                            @csrf
-                            <input type="hidden" name="productId" value="{{ $product->id }}">
-                            <input type="number" value="1" min="1" name="quantity" style="width: 80px;">
-                            <button type="submit" class="add-to-cart" data-product-id="{{ $product->id }}">Add to Cart</button>
-
-                        </form>
-                        <form action="{{ route('wishlistRoute') }}" method="post">
-                            @csrf
-                            <button type="submit" class="add-to-wishlist" data-product-id="{{ $product->id }}">Add to Wishlist</button>
-                            <input type="hidden" name="productId" value="{{ $product->id }}">
-
-                        </form>
-                        </div>
-                   
-             
+                    <form action="{{ route('addToCart') }}" method="post" class="button-container">
+                        @csrf
+                        <input type="hidden" name="productId" value="{{ $product->id }}">
+                        <input type="hidden" name="storeId" value="{{$product->getCategory->getStores->id}}">
+                        <input type="number" value="1" min="1" name="quantity" style="width: 80px;">
+                        <button type="submit" class="add-to-cart" data-product-id="{{ $product->id }}">Add to Cart</button>
+                    </form>
+                    <form action="{{ route('wishlistRoute') }}" method="post" class="button-container">
+                        @csrf
+                        <button type="submit" class="add-to-wishlist" data-product-id="{{ $product->id }}">Add to Wishlist</button>
+                        <input type="hidden" name="productId" value="{{ $product->id }}">
+                    </form>
+                </div>
             @endforeach
-       
         @endif
     </div>
 @endforeach
+
+
 
 
 
@@ -295,10 +298,7 @@
     });
 });
 
-document.getElementById('search-toggle').addEventListener('click', function() {
-    var searchInput = document.querySelector('.searchInput').value;
-    window.location.href = "{{ route('search') }}?searchInput=" + searchInput;
-});
+
 </script>
 
 </body>

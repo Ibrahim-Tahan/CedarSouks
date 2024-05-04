@@ -15,10 +15,13 @@ return new class extends Migration
             $table->id();
             $table->string("name");
             $table->double('price');
-            $table->string('image')->default('https://cdn-icons-png.flaticon.com/128/679/679720.png');
+            $table->string('logo')->nullable();
+            $table->string('path')->nullable();
             $table->string('description');
             $table->foreignId('categoryId')->references('id')->on('categories')->onDelete('cascade');
             $table->timestamps();
+
+
         });
     }
 

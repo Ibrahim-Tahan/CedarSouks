@@ -9,8 +9,9 @@ use App\Models\persons;
 use App\Models\Order_details;
 use App\Models\wishlist;
 use App\Models\Categories;
+use App\Models\Stores;
 
-
+use Session;
 class ProductsController extends Controller
 {
     /**
@@ -19,38 +20,56 @@ class ProductsController extends Controller
     public function cartView(){
         return view('Cart');
     }
+   
     // public function index()
     // {
-    //    // $products=Products::all();
-    //    $products1=Products::where('categoryId', 1)->get();
-    //    $products2=Products::where('categoryId', 2)->get();
-    //    $products3=Products::where('categoryId', 3)->get();
-    //    $products4=Products::where('categoryId', 4)->get();
-    //    $products5=Products::where('categoryId', 5)->get();
-    //    $categories = Categories::all();
-    //    $productsByCategory = [];
-   
-    //    foreach ($categories as $category) {
-    //        $productsByCategory[$category->id] = $category->products;
-    //    }
-   
-    //    return view('index', compact('products1', 'products2', 'products3', 'products4','products5','categories','productsByCategory'));
+    //     $personId = null;
+    //     if (Session::has('loginId')) {
+    //         $personId = Session::get('loginId');
+    //     } else {
+    //         return "User not logged in.";
+    //     }
+    //     $person = persons::find($personId);
+    //     if (!$person) {
+    //         return "User details not found.";
+    //     }
+    //     $store = $person->getStore()->first();
+    //     if (!$store) {
+    //         return "Store not found for the user.";
+    //     }
+    //     $storeId = $store->id;
+    //     $categories = Categories::where('store_id', $storeId)->get();
+    //     $productsByCategory = [];
+    //     foreach ($categories as $category) {
+    //         $productsByCategory[$category->id] = $category->getProducts()->get();
+    //     }
+    //     return view('index', compact('categories', 'productsByCategory'));
     // }
-
-    public function index()
-    {
-       
-        $categories = Categories::all();
-        $productsByCategory = [];
     
-        $allProducts = Products::all();
-        foreach ($allProducts as $product) {
-            $productsByCategory[$product->categoryId][] = $product;
-        }
-    
-        return view('index', compact('categories', 'productsByCategory'));
+    public function index($id)
+{
+    $personId = null;
+    if (Session::has('loginId')) {
+        $personId = Session::get('loginId');
+    } else {
+        return "User not logged in.";
     }
-    
+
+    $person = Persons::find($personId);
+    if (!$person) {
+        return "User details not found.";
+    }
+
+$store=Stores::find($id);
+    $categories = $store->getCategories;
+    $productsByCategory = [];
+    foreach ($categories as $category) {
+        $productsByCategory[$category->id] = $category->getProducts()->get();
+    }
+
+    return view('index', compact('categories', 'productsByCategory','store'));
+}
+
     public function create()
     {
         return view('addProduct');
@@ -70,35 +89,7 @@ class ProductsController extends Controller
         return "Product created successfully";
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
+    
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
 }

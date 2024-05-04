@@ -16,7 +16,10 @@ return new class extends Migration
             $table->string('fullname', 100); 
             $table->string('email', 191);
             $table->string('password', 255);
-            $table->date('birth_date');
+            $table->string('email_verification_code')->nullable();
+            $table->integer('verified')->nullable();
+            $table->rememberToken();
+            $table->date('birth_date')->nullable();
             $table->string('user_type', 50);
             $table->timestamps();
         });

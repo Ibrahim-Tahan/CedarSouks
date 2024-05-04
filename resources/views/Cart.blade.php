@@ -7,13 +7,17 @@
     height:50px;
     width:150px;
     font-size:25px;
-   background-color:#00796b;
    font-weight: 600;
 
     }
   button:hover{
     background-color:gray;
   }
+  .quantity-btn {
+    width: 30px; 
+    height: 30px;
+    font-size: 20px;
+}
 .content-table {
     width:100%;
     margin: 25px auto; 
@@ -78,7 +82,7 @@
         </thead>
         <tbody>
             @php
-                $totalPrice = 0;
+                $totalPrice=0;
             @endphp
             @foreach($orderDetails as $itm)
                 @php
@@ -91,7 +95,9 @@
                     <td>{{ $itm->getProducts->name }}</td>
                     <td>{{ $itm->getProducts->price }}$</td>
                     <td>{{ $itm->getProducts->description }}</td>
-                    <td>{{$itm->quantity}}</td>
+                    <td>
+            <input type="number" name="quantity" class="quantity-input" value="{{ $itm->quantity }}" min="1">    
+                    </td>
                    <td>
                         <form action="{{route('deleteProduct',['id'=>$itm->id]) }}" method="post">
                             @csrf
@@ -100,27 +106,27 @@
                     </td>
                 </tr>
             @endforeach
-            <tr class="active-row">
-                <td>Total Price:</td>
-                <td>{{ $totalPrice }} $</td> 
-            </tr>
+          <tr class="active-row">
+    <td>Total Price:</td>
+    <td class="total-price">{{ $totalPrice }} $</td> 
+</tr>
             <tr>
                 <td>
-                    <form action ="{{route('CheckoutPage')}}" method="post">
-                        <a href="{{route('CheckoutPage')}}">Proceed to checkout with({{$totalPrice}}$)</a>
-                    </form>
+                <td>
+    @if (!$orderDetails->isEmpty())
+        <form action="{{ route('CheckoutPage', ['id' => $orderDetails->first()->getOrders->id]) }}" method="post">
+            @csrf
+            <button type="submit">Proceed to checkout with ({{ $totalPrice }}$)</button>
+        </form>
+    @endif
+</td>
+
                 </td>
             </tr>
         </tbody>
     </table>
 </form>
 
-<script>
-      function redirectToCartPage(url) {
-        window.location.href = url;
-    }
 
-
-    </script>
 </body>
 @endsection
