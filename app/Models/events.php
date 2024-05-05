@@ -12,7 +12,6 @@ class events extends Model
         'title',
         'description',
         'date',
-        'google_calendar_event_id',
         'time',
         'storeId'
     ];
