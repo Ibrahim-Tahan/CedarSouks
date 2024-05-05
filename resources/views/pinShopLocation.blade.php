@@ -1,4 +1,5 @@
-@extends('layouts.app')
+@extends('layouts.eventapp')
+
 
 @section('navigation')
         <div class="container">
