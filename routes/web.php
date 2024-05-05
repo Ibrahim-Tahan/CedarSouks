@@ -26,11 +26,9 @@ Route::get('makeEventindex',[EventController::class,'index']);
 
 
 
-
-
 //All the authentification route
 
-Route::get('/Login', [CustomAuthController::class, 'login'])->name('Login');
+Route::get('/login', [CustomAuthController::class, 'login'])->name('login');
 Route::get('/registration', [CustomAuthController::class, 'registration'])->name('getRegister');
 Route::post('/register-user', [CustomAuthController::class, 'registerUser'])->name('register-user');
 Route::post('/login-user', [CustomAuthController::class, 'loginUser'])->name('login-user');
@@ -108,7 +106,7 @@ Route::delete('/delete-type/{id}/{store_id}', [CustomAuth2::class, 'destroy2'])-
 
 Route::get('/allstore',[Admin::class, 'store'])->name('allstore');
 Route::get('/allstore/{id}',[Admin::class, 'approve'])->name('approve');
-Route::post('/search',[Admin::class,'search2'])->name('search');
+Route::post('/SearchStore',[Admin::class,'search2'])->name('SearchStore');
 
 
 
@@ -118,8 +116,6 @@ Route::get('/alluser2/{id}',[Admin::class, 'update'])->name('update');
 Route::post('/user/{id}',[Admin::class, 'changepass'])->name('changepass');
 Route::match(['get', 'post'],'/filter',[Admin::class, 'filter'])->name('filter');
 Route::get('/admin',[Admin::class, 'adminpage']);
-
-
 //end admin features
 
 
