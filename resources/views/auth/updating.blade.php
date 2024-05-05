@@ -27,7 +27,7 @@
     </div>
     <div class="form-group password">
         <label for="password">Password</label>
-        <input type="password" id="password" name="password" placeholder="Update your password" value="{{pass}}">
+        <input type="password" id="password" name="password" placeholder="Update your password">
         <i id="pass-toggle-btn" class="fa-solid fa-eye"></i>
    </div>
     <div class="form-group date">

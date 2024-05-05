@@ -347,9 +347,7 @@ class CustomAuthController extends Controller
         if (Session::has('loginId')) {
             $data = persons::where('id', Session::get('loginId'))->first();
         }
-        $pass=$decrypt= Crypt::decrypt($data->password);  
-        
-        return view('auth.updating', compact('data','pass'));
+        return view('auth.updating', compact('data'));
     }
 
 
