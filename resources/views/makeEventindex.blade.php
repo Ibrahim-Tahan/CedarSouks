@@ -67,7 +67,7 @@
                     <input type="submit" class="btn-primary" value="Choose Products">
                 </div>
                 <div class="col-5">
-                    <button class="btn-danger">Back</button>
+                    <a href="{{ route('home') }}" class="btn btn-danger">Close</a>
                 </div>
             </div>
         

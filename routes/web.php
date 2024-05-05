@@ -30,6 +30,8 @@ Route::post('insertUserAddress2/{id}',[UserLocationController::class,'store2'])-
 Route::get('PinShopLocation',[StoreLocationController::class,'index']);
 Route::post('insertShopLocation/{id}',[StoreLocationController::class,'store'])->name('insertShopLocation');
 
+Route::get('viewAllEvents/{id}',[EventController::class,'indexEvents'])->name('viewAllEvents');
+
 Route::get('makeEventindex/{id}',[EventController::class,'index'])->name('eventIndex');
 Route::post('addEvent',[EventController::class,'store'])->name('event.store');
 

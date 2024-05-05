@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.eventapp')
 
 @section('css')
 
@@ -69,6 +69,7 @@
     
         addProductBtn.addEventListener('click', function() {
             addProductBtn.disabled = true;
+            alert('Product Added')
         });
     </script>
     

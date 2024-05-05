@@ -18,6 +18,18 @@ class EventController extends Controller
     /**
      * Display a listing of the resource.
      */
+    
+    public function indexEvents($id){
+        $stores = Stores::where('SellerId', $id)->get();
+        
+        $UserId = Session::get('loginId');
+        $person = Persons::find($UserId);
+
+        return view("viewAllEvents",compact('stores','person'));
+    }
+    
+    
+    
     public function index($id)
     {
         $stores = Stores::where('SellerId', $id)->get();
@@ -65,18 +77,21 @@ class EventController extends Controller
     //Make a form with 2 submit button, 1 for add more procucts, another for done.
     public function storeProducts(Request $request)
     {
-
         $prod = new event_user_product;
         $prod->eventId = $request->eventId;
         $prod->productId = $request->productId;
         $prod->bidding_price = $request->bidding_price; 
         
         
-        $prod->save();
-    
+        $prod->save();   
+        $event = Events::find($request->eventId);
+        
+        $storeId = $event->storeId;
+        $prods = Products::whereHas('getCategory', function ($query) use ($storeId) {
+            $query->where('Store_id', $storeId);
+        })->get();
 
-
-        return view('addProductEvent')->with('success','Product Added');
+        return view('addProductEvent', compact('event','prods'))->with('success','Product Added Successfully');
     }
 
 
