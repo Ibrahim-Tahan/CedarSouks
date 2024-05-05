@@ -17,16 +17,19 @@ class UserLocationController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request,$id)
     {
+
         $address = new address;
         $address->addressname = $request->addressname;
         $address->latitude = $request->latitude;
         $address->longitude = $request->longitude;
-        $address->userId = $request->uid;
+        $address->userId = $id;
         $address->save();
 
-        return $this->index();
+        return redirect()->route('getRegister')->with('success', 'You have registered successfully. Verify Your Email');
+
+        
     }
 
     /**

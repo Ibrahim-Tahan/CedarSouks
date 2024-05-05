@@ -14,10 +14,10 @@ use App\Http\Controllers\Admin;
 
 
 Route::get('PinUserLocation',[UserLocationController::class,'index']);
-Route::post('insertUserAddress',[UserLocationController::class,'store']);
+Route::post('insertUserAddress/{id}',[UserLocationController::class,'store'])->name('insertUserLocation');
 
 Route::get('PinShopLocation',[StoreLocationController::class,'index']);
-Route::post('insertShopLocation',[StoreLocationController::class,'store']);
+Route::post('insertShopLocation/{id}',[StoreLocationController::class,'store'])->name('insertShopLocation');
 
 Route::get('makeEventindex',[EventController::class,'index']);
 

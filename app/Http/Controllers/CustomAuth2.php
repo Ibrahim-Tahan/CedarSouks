@@ -54,10 +54,9 @@ class CustomAuth2 extends Controller
 
         $store->save();
 
-    
-        return redirect()->route('tableindex', [
-            'id' => $userId,
-        ])->with('success', 'You have to wait for the admin to approve your store ' . $store->name);
+
+        return view('pinShopLocation', compact('store'));
+
     }
 
 

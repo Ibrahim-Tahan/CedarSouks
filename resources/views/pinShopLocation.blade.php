@@ -15,35 +15,11 @@
     @section('content')
     <div class="content">
         <h1>SHOP SIDE</h1>
-        <form action="/insertShopLocation" method="post">
-            @csrf
+        <form action="{{ route('insertShopLocation', ['id' => $store->id]) }}" method="post">
+        @csrf
             <div class="mapform">
                 <div class="row">
-                   
-                    <div class="col-5">
-                        <label for="name">Name</label>
-                        <input type="text" class="form-control" id="name" name="name" required>
-                    </div>
-                   
-                    
-                    <div class="col-5">
-                        <label for="address">Address</label>
-                        <input type="text" class="form-control" id="address" name="address" required>
-                    </div>
                 </div>
-                <div class="row">
-                    <div class="col-5">
-                        <label for="sellerId">Seller ID</label>
-                        <input type="text" class="form-control" id="sellerId" name="sellerId" required>
-                    </div>
-
-                    <div class="col-5">
-                        <label for="description">Description</label>
-                        <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
-                    </div>
-                   
-                </div>
-
                 <div class="row">
                     <div class="col-5">
                         <label for="latitude">latitude</label>

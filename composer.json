@@ -8,6 +8,7 @@
         "php": "^8.2",
         "google/apiclient": "^2.15",
         "guzzlehttp/psr7": "^2.6",
+        "illuminate/encryption": "*",
         "laravel/framework": "^11.0",
         "laravel/socialite": "^5.13",
         "laravel/tinker": "^2.9",
