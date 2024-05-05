@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.eventapp')
 
 
 @section('navigation')
@@ -21,8 +21,8 @@
 
     <div class="content">
         <h1>USER/SHOP SIDE</h1>
-        <form action="/insertUserAddress" method="post">
-            @csrf
+        <form action="{{ route('insertUserLocation', ['id' => $user->id]) }}" method="post">
+        @csrf
             <div class="mapform">
                 <div class="row">
                     <div class="col-5">
@@ -33,9 +33,6 @@
                     </div>
                     <div class="col-5">
                         <input type="text" class="form-control" placeholder="addressname" name="addressname" id="addressname">
-                    </div>
-                    <div class="col-5">
-                        <input type="text" class="form-control" placeholder="uid" name="uid" id="uid">
                     </div>
 
                 </div>

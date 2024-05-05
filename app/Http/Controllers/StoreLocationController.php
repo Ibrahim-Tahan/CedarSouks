@@ -15,19 +15,19 @@ class StoreLocationController extends Controller
         return view('pinShopLocation');
     }
 
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        $store= new Stores;
-        $store->name = $request->input('name');
-        $store->sellerId = $request->sellerId;
-        $store->address = $request->input('address');
-        $store->description = $request->input('description');
-        $store->latitude = $request->input('latitude'); 
-        $store->longitude = $request->input('longitude');
-
-        $store->save();
-
-        return $this->index();
+        $store = stores::find($id); // Use the "find" method to retrieve the store by its ID
+        
+        if ($store) {
+            $store->latitude = $request->input('latitude'); 
+            $store->longitude = $request->input('longitude');
+            $store->save();
+    
+            return redirect()->route('tableindex', [
+                'id' => $store->sellerId,
+            ])->with('success', 'You have to wait for the admin to approve your store ' . $store->name);
+        }
     }
 
     /**

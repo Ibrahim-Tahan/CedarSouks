@@ -8,7 +8,8 @@ use App\Models\Categories;
 use App\Models\Products;
 use App\Models\persons;
 use App\Models\Image;
-use Session;
+use Illuminate\Support\Facades\Session;
+
 
 class CustomAuth2 extends Controller
 {
@@ -54,10 +55,9 @@ class CustomAuth2 extends Controller
 
         $store->save();
 
-    
-        return redirect()->route('tableindex', [
-            'id' => $userId,
-        ])->with('success', 'You have to wait for the admin to approve your store ' . $store->name);
+
+        return view('pinShopLocation', compact('store'));
+
     }
 
 
