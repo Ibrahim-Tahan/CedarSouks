@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Session;
 use Laravel\Socialite\Facades\Socialite;
+
 use App\Mail\RegisterMail;
 
 

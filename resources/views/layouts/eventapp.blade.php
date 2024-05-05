@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Pin Location</title>
+    <title>Title</title>
 
     <link rel="stylesheet" href="{{ asset('css/eventstyle.css') }}">
 

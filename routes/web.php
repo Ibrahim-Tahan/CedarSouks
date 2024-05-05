@@ -10,16 +10,18 @@ use App\Http\Controllers\Order;
 use App\Http\Controllers\Admin;
 
 
-
-
-
 Route::get('PinUserLocation',[UserLocationController::class,'index']);
 Route::post('insertUserAddress/{id}',[UserLocationController::class,'store'])->name('insertUserLocation');
 
 Route::get('PinShopLocation',[StoreLocationController::class,'index']);
 Route::post('insertShopLocation/{id}',[StoreLocationController::class,'store'])->name('insertShopLocation');
 
-Route::get('makeEventindex',[EventController::class,'index']);
+Route::get('makeEventindex/{id}',[EventController::class,'index'])->name('eventIndex');
+Route::post('addEvent',[EventController::class,'store'])->name('event.store');
+
+Route::get('addProducts',[EventController::class,'productFormIndex'])->name('event.productFormIndex');
+Route::post('addProducts',[EventController::class,'storeProducts'])->name('event.storeProducts');
+
 
 
 
@@ -65,26 +67,6 @@ Route::get('/registration/verify-email/{verification_code}', [CustomAuthControll
 
 
 //End of the authentification route
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -162,26 +144,6 @@ Route::get('/admin',[Admin::class, 'adminpage']);
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //order feature
 
 Route::get('/allorder',[Order::class, 'order'])->name('allorder');
@@ -193,26 +155,3 @@ Route::get('detail2/{id}',[Order::class, 'detail2'])->name('detail2');
 
 //Seller Reports
 Route::post('/reports/{id}',[Order::class,'date'])->name('date');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

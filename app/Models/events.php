@@ -10,8 +10,11 @@ class events extends Model
     use HasFactory;
     protected $fillable = [
         'title',
-        'event_date',
-        'store_id',
+        'description',
+        'date',
+        'google_calendar_event_id',
+        'time',
+        'storeId'
     ];
     public function getUserProduct(){
         return $this->hasMany(event_user_product::class,'eventId');
