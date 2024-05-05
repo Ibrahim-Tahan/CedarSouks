@@ -9,9 +9,23 @@ use App\Http\Controllers\CustomAuth2;
 use App\Http\Controllers\Order;
 use App\Http\Controllers\Admin;
 
+//miguel part of the project
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\SearchController;
+use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\AuthenticationController;
+//end of miguel part
+
+
+
+
 
 Route::get('PinUserLocation',[UserLocationController::class,'index']);
 Route::post('insertUserAddress/{id}',[UserLocationController::class,'store'])->name('insertUserLocation');
+Route::post('insertUserAddress2/{id}',[UserLocationController::class,'store2'])->name('insertUserLocation2');
 
 Route::get('PinShopLocation',[StoreLocationController::class,'index']);
 Route::post('insertShopLocation/{id}',[StoreLocationController::class,'store'])->name('insertShopLocation');
