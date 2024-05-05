@@ -156,7 +156,7 @@
       <div class="option">
         <h3>Events</h3>
         <p>Create Events.</p>
-        <a href="/makeEventindex">Events </a>
+        <a href="{{ route('eventIndex',['id'=> $data->id]) }}" >Events</a>
       </div>
       <div class="option">
         <h3>Logout</h3>

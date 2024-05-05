@@ -10,16 +10,18 @@ use App\Http\Controllers\Order;
 use App\Http\Controllers\Admin;
 
 
-
-
-
 Route::get('PinUserLocation',[UserLocationController::class,'index']);
 Route::post('insertUserAddress',[UserLocationController::class,'store']);
 
 Route::get('PinShopLocation',[StoreLocationController::class,'index']);
 Route::post('insertShopLocation',[StoreLocationController::class,'store']);
 
-Route::get('makeEventindex',[EventController::class,'index']);
+Route::get('makeEventindex/{id}',[EventController::class,'index'])->name('eventIndex');
+Route::post('addEvent',[EventController::class,'store'])->name('event.store');
+
+Route::get('addProducts',[EventController::class,'productFormIndex'])->name('event.productFormIndex');
+Route::post('addProducts',[EventController::class,'storeProducts'])->name('event.storeProducts');
+
 
 
 

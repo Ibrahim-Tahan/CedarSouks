@@ -20,17 +20,56 @@
 
 @section('content')
     <div class="content">
-        <form>
+        <form action="/addEvent" method="POST">
+            @csrf
             <div class="row">     
                 <div class="col-5">
-                    <label for="name">Event Name</label>
-                    <input type="text" class="form-control" id="name" name="name" required>
+                    <label for="title">Event Name</label>
+                    <input type="text" class="form-control" id="title" name="title" required>
+                </div>
+
+                <div class="col-5">
+                    <label for="description">Event Description</label>
+                    <textarea class="form-control" id="description" name="description" required>
+                    </textarea>
+                </div>
+
+            </div>
+
+
+            <div class="row">
+
+                <div class="col-5">
+                    <label for="date">Event date</label>
+                    <input type="date" class="form-control" id="date" name="date" required>
                 </div>
                 <div class="col-5">
-                    <label for="name">Event date</label>
-                    <input type="datetime-local">
+                    <label for="time">Event Time</label>
+                    <input type="time" class="form-control" id="time" name="time" required>
+                </div>
+
+
+            </div>
+            <div class="row">
+                <div class="col-5">                
+                    <label for="store">Pick a store for this event</label>
+                    <select class="form-control" name="storeId">
+                        <option value=""></option>
+                        @foreach ($stores as $store)
+                            <option value="{{$store->id}}">{{$store->name}}</option>
+                        @endforeach  
+                    </select>
+                </div>                        
+            </div>
+            <div class="row">
+                <div class="col-5">
+                    <input type="submit" class="btn-primary" value="Choose Products">
+                </div>
+                <div class="col-5">
+                    <button class="btn-danger">Back</button>
                 </div>
             </div>
+        
         </form>    
     </div>
 

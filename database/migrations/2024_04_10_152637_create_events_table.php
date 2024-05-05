@@ -17,8 +17,8 @@ return new class extends Migration
             $table->text("description");
             $table->date("date");
             $table->time("time");
-            $table->text("google_calendar_event_id");
             $table->foreignId("storeId")->references("id")->on("stores")->onDelete("cascade");
+            $table->boolean('Status')->default(0);
             $table->timestamps();
         });
     }
