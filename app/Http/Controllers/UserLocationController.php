@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\address;
+use Session;
 class UserLocationController extends Controller
 {
     /**
@@ -28,6 +29,26 @@ class UserLocationController extends Controller
         $address->save();
 
         return redirect()->route('getRegister')->with('success', 'You have registered successfully. Verify Your Email');
+
+        
+    }
+
+
+    public function store2(Request $request,$id)
+    {
+
+        $address = new address;
+        $address->addressname = $request->addressname;
+        $address->latitude = $request->latitude;
+        $address->longitude = $request->longitude;
+        $address->userId = $id;
+        $address->save();
+
+
+        Session::put('loginId', $id);
+        return redirect('dashboard');
+
+       
 
         
     }

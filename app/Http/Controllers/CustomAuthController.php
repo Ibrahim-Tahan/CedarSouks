@@ -251,28 +251,24 @@ class CustomAuthController extends Controller
             'date' => 'required|date|before:2020-12-31|date_format:Y-m-d',
         ]);
     
-        $user = persons::find($userId);
+        $user = Persons::find($userId);
     
         if (!$user) {
             return response()->json(['message' => 'User not found'], 404);
         }
-    
-        $previousPassword = $user->password;
+        
     
         $user->fullname = $request->input('name');
         $user->email = $request->input('email');
         $user->birth_date = $request->input('date');
         $user->remember_token = Str::random(40);
-        $user->save();
     
         $password = $request->input('password');
     
-        if (strlen($password) < 5) {
-            $user->password = $previousPassword;
-        } else {
+        if ($password && strlen($password) >= 5) {
             $user->password = Hash::make($password);
         }
-
+        $user->save();
     
         if (Session::has('loginId')) {
             Session::forget('loginId');
@@ -320,6 +316,7 @@ class CustomAuthController extends Controller
                 $order=new orders();
                 $order->userId=$user->id;
                 $order->save();
+                return view('pinUserlocation2', compact('user'));
             }
             Session::put('loginId', $user->id);
             return redirect('dashboard');
@@ -347,9 +344,7 @@ class CustomAuthController extends Controller
         if (Session::has('loginId')) {
             $data = persons::where('id', Session::get('loginId'))->first();
         }
-        $pass=$decrypt= Crypt::decrypt($data->password);  
-        
-        return view('auth.updating', compact('data','pass'));
+        return view('auth.updating', compact('data'));
     }
 
 

@@ -21,7 +21,7 @@
 
     <div class="content">
         <h1>USER/SHOP SIDE</h1>
-        <form action="{{ route('insertUserLocation', ['id' => $user->id]) }}" method="post">
+        <form action="{{ route('insertUserLocation2', ['id' => $user->id]) }}" method="post">
         @csrf
             <div class="mapform">
                 <div class="row">
