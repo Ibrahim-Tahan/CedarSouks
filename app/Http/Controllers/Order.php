@@ -108,6 +108,20 @@ class Order extends Controller
             return view("order.orders", compact('orderDetails','id'));
     }
 
+
+
+
+
+
+
+
+    
+
+
+
+
+    
+
 }
 
 

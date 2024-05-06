@@ -37,7 +37,8 @@ public function session(Request $request)
 
     ]);
 
-    return redirect()->away($session->url);}
+    return redirect()->away($session->url);
+}
 
 
 public function success()

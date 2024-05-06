@@ -17,4 +17,5 @@
     <body>
         @yield('content')
 </body>
+@yield('footer')
 </head>

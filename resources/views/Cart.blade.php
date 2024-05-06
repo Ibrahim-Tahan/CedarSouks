@@ -96,7 +96,7 @@
                     <td>{{ $itm->getProducts->price }}$</td>
                     <td>{{ $itm->getProducts->description }}</td>
                     <td>
-            <input type="number" name="quantity" class="quantity-input" value="{{ $itm->quantity }}" min="1">    
+            <input type="number" name="quantity" class="quantity-input" value="{{ $itm->quantity }}" min="1" readonly>    
                     </td>
                    <td>
                         <form action="{{route('deleteProduct',['id'=>$itm->id]) }}" method="post">

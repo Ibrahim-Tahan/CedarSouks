@@ -2,37 +2,39 @@
 
 
 @section('navigation')
-        <div class="container">
-            <div class=" navbar-collapse " id="navbarCollapse">
-                <ul class="navbar-nav mx-auto">
-                    <a href="" class="navbar-brand">
-                        <h2 class="d-inline align-middle"><strong>Pin Your Store Location</strong></h2>
-                    </a>
-                </ul>
+    
+    <div class="container">
+        <div class=" navbar-collapse " id="navbarCollapse">
+            <ul class="navbar-nav mx-auto">
+                <a href="" class="navbar-brand">
+                    <h2 class="d-inline align-middle"><strong>Pin Your Location</strong></h2>
+                </a>
+            </ul>
 
-            </div>
         </div>
+    </div>
+
 @endsection
-    @section('content')
+
+
+@section('content')
+
     <div class="content">
-        <h1>SHOP SIDE</h1>
-        <form action="{{ route('insertShopLocation', ['id' => $store->id]) }}" method="post">
+        <h1>USER/SHOP SIDE</h1>
+        <form action="{{ route('insertUserLocation2', ['id' => $user->id]) }}" method="post">
         @csrf
             <div class="mapform">
                 <div class="row">
-                </div>
-                <div class="row">
                     <div class="col-5">
-                        <label for="latitude">latitude</label>
                         <input type="text" readonly class="form-control" placeholder="lat" name="latitude" id="lat">
                     </div>
                     <div class="col-5">
-                        <label for="longitude">longitude</label>
-                        <input type="text" readonly class="form-control" placeholder="lng" name="longitude" id="lng">
-                    </div>
+                    <input style="margin-bottom: 10px;" type="text" readonly class="form-control" placeholder="lng" name="longitude" id="lng">
+                    </div><br><br>
+                  <div class="col-5">
+                 <input type="text" class="form-control" placeholder="addressname" name="addressname" id="addressname">
+                 </div>
                 </div>
-               
-
                 <div id="map" style="height: 400px; width: 800px;" class="my-3"></div>
 
                 <script>
@@ -43,6 +45,8 @@
                             zoom: 12,
                             scrollwheel:true,
                         });
+
+//-----------NEED TO MAKE FUNCTION TO CREATE MARKERS
 
                         let POS = { lat: 33.888630, lng: 35.5018 };
                         const marker = new google.maps.Marker({

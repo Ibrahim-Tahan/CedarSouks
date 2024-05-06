@@ -38,4 +38,6 @@ class CheckoutController extends Controller
     return redirect()->route('CheckoutPage', ['id' => $order->id]);
     
   }
+
+  
 }

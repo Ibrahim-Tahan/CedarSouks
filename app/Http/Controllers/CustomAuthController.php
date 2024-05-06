@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\persons;
-use App\Models\Orders;
-use App\Models\Stores;
-use Hash;
-use Mail;
-use Str;
-use Session;
+use App\Models\orders;
+use App\Models\stores;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Session;
 use Laravel\Socialite\Facades\Socialite;
 use App\Mail\RegisterMail;
 
@@ -46,7 +46,7 @@ class CustomAuthController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:5|max:12',
-            'date' => 'required|date|before:2020-12-31|date_format:Y-m-d',
+            'date' => 'required|date|before:2016-12-31|date_format:Y-m-d',
             'type' => 'required'
         ]);
 
@@ -69,23 +69,27 @@ class CustomAuthController extends Controller
         $res = $user->save(); // Save the user to the database
 
         
-        if($user->user_type=="Buyer")
-        {
-            $order=new orders();
-            $order->userId=$user->id;
-            $order->save();
-        }
 
 
         
         Mail::to($request->email)->send(new RegisterMail ($user));
 
         // Display success or failure message
-        if ($request->date > '2009-12-31') {
+        if ($request->date > '2016-12-31') {
             return redirect()->back()->with('fail', 'Date must be valid');
         }
         if ($res) {
-            return redirect()->back()->with('success', 'You have registered successfully,Verify Your Email');
+            if($user->user_type=="Buyer")
+            {
+                $order=new orders();
+                $order->userId=$user->id;
+                $order->save();
+                return view('pinUserlocation', compact('user'));
+            }
+            else
+            {
+                return redirect()->back()->with('success', 'You have registered successfully,Verify Your Email');
+            }
         } else {
             return redirect()->back()->with('fail', 'Something went wrong');
         }
@@ -146,6 +150,7 @@ class CustomAuthController extends Controller
              $data = persons::where('id', Session::get('loginId'))->first();
          }
          if ($data->user_type == 'Buyer') {
+
              return view('auth.dashboard', compact('data','stores'));
          } else {
              return view('auth.homepage', compact('data'));
@@ -246,28 +251,24 @@ class CustomAuthController extends Controller
             'date' => 'required|date|before:2020-12-31|date_format:Y-m-d',
         ]);
     
-        $user = persons::find($userId);
+        $user = Persons::find($userId);
     
         if (!$user) {
             return response()->json(['message' => 'User not found'], 404);
         }
-    
-        $previousPassword = $user->password;
+        
     
         $user->fullname = $request->input('name');
         $user->email = $request->input('email');
         $user->birth_date = $request->input('date');
         $user->remember_token = Str::random(40);
-        $user->save();
     
         $password = $request->input('password');
     
-        if (strlen($password) < 5) {
-            $user->password = $previousPassword;
-        } else {
+        if ($password && strlen($password) >= 5) {
             $user->password = Hash::make($password);
         }
-
+        $user->save();
     
         if (Session::has('loginId')) {
             Session::forget('loginId');
@@ -315,6 +316,7 @@ class CustomAuthController extends Controller
                 $order=new orders();
                 $order->userId=$user->id;
                 $order->save();
+                return view('pinUserlocation2', compact('user'));
             }
             Session::put('loginId', $user->id);
             return redirect('dashboard');
@@ -342,7 +344,6 @@ class CustomAuthController extends Controller
         if (Session::has('loginId')) {
             $data = persons::where('id', Session::get('loginId'))->first();
         }
-        
         return view('auth.updating', compact('data'));
     }
 

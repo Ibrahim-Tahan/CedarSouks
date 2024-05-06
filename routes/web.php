@@ -15,15 +15,13 @@ use App\Http\Controllers\MessageController;
 
 
 Route::get('PinUserLocation',[UserLocationController::class,'index']);
-Route::post('insertUserAddress',[UserLocationController::class,'store']);
+Route::post('insertUserAddress/{id}',[UserLocationController::class,'store'])->name('insertUserLocation');
+Route::post('insertUserAddress2/{id}',[UserLocationController::class,'store2'])->name('insertUserLocation2');
 
 Route::get('PinShopLocation',[StoreLocationController::class,'index']);
-Route::post('insertShopLocation',[StoreLocationController::class,'store']);
+Route::post('insertShopLocation/{id}',[StoreLocationController::class,'store'])->name('insertShopLocation');
 
 Route::get('makeEventindex',[EventController::class,'index']);
-
-
-
 
 
 //All the authentification route
@@ -169,7 +167,7 @@ Route::post('/session', [StripeController::class,'session'])->name('session');
 Route::get('/success', [StripeController::class,'success'])->name('success');
 
 
-Route::get('messagesSeller/{id}', [MessageController::class,'view'])->name('messages');
+Route::get('messagesSeller/{id}', [MessageController::class,'view'])->name('messagesSeller');
 Route::get('chatSeller/{sellerid}/{buyerid}',[MessageController::class,'chat'])->name('chatSeller');
 Route::post('selleraddmsg',[MessageController::class,'selleraddmsg'])->name('selleraddmsg');
 //end messages seller

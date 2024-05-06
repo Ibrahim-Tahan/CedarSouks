@@ -31,7 +31,7 @@
 <nav class="nav-seller">
 </nav>
 
-<h1>Messages:</h1>
+<h1>Available buyers:</h1>
 <ul class="user-list">
     @foreach ($users as $user)
     <li class="user-item" onclick="location.href='{{ route('chatSeller', ['sellerid' => $id, 'buyerid' => $user->id]) }}';">

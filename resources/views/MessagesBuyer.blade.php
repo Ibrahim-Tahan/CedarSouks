@@ -30,7 +30,7 @@
         background-color: #e6e6e6;
     }
 </style>
-<h1>Messages:</h1>
+<h1>Sellers available for chat:</h1>
 <ul class="user-list">
     @foreach ($users as $user)
     <li class="user-item" onclick="location.href='{{ route('chatBuyer', ['buyerid' => $id, 'sellerid' => $user->id]) }}';">
