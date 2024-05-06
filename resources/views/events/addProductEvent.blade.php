@@ -19,11 +19,7 @@
 @endsection
 
 @section('content')
-@if(Session::has('success'))
-<div class="success-message">
-    <p>{{Session::get('success')}}</p>
-</div>
-@endif
+
     <div class="content">
             <h2>Here are the products in the store chosen</h2>
 
@@ -48,7 +44,7 @@
                                 <td>{{$prod->name}}</td>
                                 <td>${{$prod->price}}</td>
                                 <td><input type="number" class="form-control" placeholder="Starting Price" name="bidding_price" id="bidding_price" required></td>
-                                <td><button type="submit" class="btn-primary"  id="addProductBtn">Add Product</button>
+                                <td><button type="submit" class="btn-primary" id="addProductBtn">Add Product</button></td>
                             </form>
                         </tr>
                     @endforeach
@@ -69,7 +65,6 @@
     
         addProductBtn.addEventListener('click', function() {
             addProductBtn.disabled = true;
-            alert('Product Added')
         });
     </script>
     

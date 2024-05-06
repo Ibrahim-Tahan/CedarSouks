@@ -21,6 +21,7 @@
 
 @section('content')
     <div class="content">
+
         <form action="/addEvent" method="POST">
             @csrf
             <div class="row">     
@@ -66,12 +67,11 @@
                 <div class="col-5">
                     <input type="submit" class="btn-primary" value="Choose Products">
                 </div>
-                <div class="col-5">
-                    <a href="{{ route('home') }}" class="btn btn-danger">Close</a>
-                </div>
             </div>
-        
-        </form>    
+        </form>   
+        <div class="col-5">
+            <a href="{{ route('home') }}" class="btn btn-danger">Close</a>
+        </div> 
     </div>
 
 @endsection

@@ -9,15 +9,13 @@ use App\Models\Products;
 use App\Models\event_user_product;
 use Carbon\Carbon;
 use App\Models\persons;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Spatie\GoogleCalendar\Event;
 
 
 class EventController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     
     public function indexEvents($id){
         $stores = Stores::where('SellerId', $id)->get();
@@ -25,20 +23,45 @@ class EventController extends Controller
         $UserId = Session::get('loginId');
         $person = Persons::find($UserId);
 
-        return view("viewAllEvents",compact('stores','person'));
+        return view("events.viewAllEvents",compact('stores','person'));
     }
-    
-    
     
     public function index($id)
     {
         $stores = Stores::where('SellerId', $id)->get();
-        return view("makeEventindex",compact('stores'));
+        return view("events.makeEventindex",compact('stores'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    public function indexMoreProducts($id){
+        $event = Events::find($id);
+        $storeId = $event->storeId;
+        $prods = Products::whereHas('getCategory', function ($query) use ($storeId){
+            $query->where('Store_id',$storeId);
+        })->get();
+        return view('events.addMoreProducts', compact('event','prods'));
+    }
+
+
+     public function storeMoreProducts(Request $request)
+    {
+        $prod = new event_user_product;
+        $prod->eventId = $request->eventId;
+        $prod->productId = $request->productId;
+        $prod->bidding_price = $request->bidding_price; 
+        
+        
+        $prod->save();   
+        $event = Events::find($request->eventId);
+        
+        $storeId = $event->storeId;
+        $prods = Products::whereHas('getCategory', function ($query) use ($storeId) {
+            $query->where('Store_id', $storeId);
+        })->get();
+
+        return view('events.addMoreProducts', compact('event','prods'));
+    }
+
+
     public function store(Request $request)
     {
 
@@ -55,8 +78,6 @@ class EventController extends Controller
         $storeId = $event->storeId;
         $event->save();
 
-/*
-
         Event::create([
             'name'=> $request->input('title'),
             'description'=> $request->input('description'),
@@ -64,17 +85,14 @@ class EventController extends Controller
             'endDateTime'=> $endTime
         ]);
 
-*/
+
 
         $prods = Products::whereHas('getCategory', function ($query) use ($storeId){
             $query->where('Store_id',$storeId);
         })->get();
-        return view('addProductEvent',compact('event','prods'));
+        return view('events.addProductEvent',compact('event','prods'));
     }
 
-
-
-    //Make a form with 2 submit button, 1 for add more procucts, another for done.
     public function storeProducts(Request $request)
     {
         $prod = new event_user_product;
@@ -91,33 +109,35 @@ class EventController extends Controller
             $query->where('Store_id', $storeId);
         })->get();
 
-        return view('addProductEvent', compact('event','prods'))->with('success','Product Added Successfully');
+        return view('events.addProductEvent', compact('event','prods'));
     }
 
-
-
-
-    /**
-     * Display the specified resource.
-     */
+    
     public function show(string $id)
     {
-        //
+        $event = Events::find($id);
+        $prods = Products::whereHas('getEventUserProduct', function ($query) use ($id) {
+            $query->where('eventId', $id);
+        })->get();
+    
+        return view('events.viewEventProducts', compact('event', 'prods'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
+    public function delete(string $id){
+        $eventproduct = event_user_product::findOrFail($id);  
+        $eventId = $eventproduct->eventId;
+        
+        $eventproduct->delete(); 
+        return Redirect::route('event.showProducts', ['id' => $eventId]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+    public function deleteEvent(string $id){
+        $event = Events::find($id);
+        $storeId = $event->storeId;
+        $event->delete();
+        
+        return Redirect::route('viewAllEvents',['id'=>$storeId]);
+
     }
+    
 }
