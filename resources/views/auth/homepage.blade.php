@@ -159,9 +159,14 @@
         <a href="/allorder">Events </a>
       </div>
       <div class="option">
+        <h3>Live</h3>
+        <p>Live Chat.</p>
+        <a href="">Live Chat </a>
+      </div>
+      <div class="option">
         <h3>Logout</h3>
         <p>Sign out of your account.</p>
-        <a href="logout">Logout</a>
+        <a hSlref="logout">Logout</a>
       </div>
     </div>
   </main>

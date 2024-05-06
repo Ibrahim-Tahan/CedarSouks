@@ -10,13 +10,7 @@ use App\Http\Controllers\Order;
 use App\Http\Controllers\Admin;
 
 //miguel part of the project
-use App\Http\Controllers\CartController;
-use App\Http\Controllers\WishlistController;
-use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ProductsController;
-use App\Http\Controllers\CheckoutController;
-use App\Http\Controllers\PaymentController;
-use App\Http\Controllers\AuthenticationController;
 //end of miguel part
 
 
@@ -203,6 +197,7 @@ Route::get('detail2/{id}',[Order::class, 'detail2'])->name('detail2');
 
 
 //Seller Reports
+
 Route::post('/reports/{id}',[Order::class,'date'])->name('date');
 
 
@@ -228,5 +223,8 @@ Route::post('/reports/{id}',[Order::class,'date'])->name('date');
 
 
 //Miguel Part
+
+
+Route::get('products/{id}',[ProductsController::class,'index'])->name('products');
 
 
