@@ -33,4 +33,7 @@ class persons extends Model
     public function getEvents(){
         return $this->hasMany(event_user_product::class,'userId');
     }
+    public function getReviews(){
+        return $this->hasMany(Reviews::class,'userId');
+    }
 }

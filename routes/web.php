@@ -8,6 +8,8 @@ use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\CustomAuth2;
 use App\Http\Controllers\Order;
 use App\Http\Controllers\Admin;
+use App\Http\Controllers\BotManController;
+use App\Http\Controllers\ReviewController;
 
 //miguel part of the project
 use App\Http\Controllers\CartController;
@@ -179,4 +181,7 @@ Route::get('detail2/{id}',[Order::class, 'detail2'])->name('detail2');
 Route::post('/reports/{id}',[Order::class,'date'])->name('date');
 
 //Botman chat
-Route::match(['get', 'post'], '/botman', 'App\Http\Controllers\BotManController@handle');
+Route::match(['get', 'post'], '/botman', [BotManController::class,'handle']);
+
+//Review
+Route::match(['get', 'post'],'/reviews', [ReviewController::class,'reviewstore']);
