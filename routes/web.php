@@ -177,3 +177,6 @@ Route::get('detail2/{id}',[Order::class, 'detail2'])->name('detail2');
 
 //Seller Reports
 Route::post('/reports/{id}',[Order::class,'date'])->name('date');
+
+//Botman chat
+Route::match(['get', 'post'], '/botman', 'App\Http\Controllers\BotManController@handle');
