@@ -145,7 +145,7 @@
     .search-bar button:hover {
       background-color: #0056b3;
     }
-    
+
     /* New styles for store details */
     .store {
       display: flex;
@@ -175,12 +175,29 @@
       color: #666;
       font-size: 16px;
     }
+    #bt {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 12px 24px;
+        background-color: #007bff;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 6px;
+        font-size: 16px;
+        font-weight: 600;
+        transition: background-color 0.3s ease;
+    }
+    #bt:hover {
+        background-color: #0056b3;
+    }
   </style>
 </head>
 <body>
   <header>
     <h1>Welcome, {{$data->fullname}}</h1>
+
     <nav>
+
       <ul>
         <li><a href="add-store.html">Add Order</a></li>
         <li><a href="update2">Change User Info</a></li>
@@ -208,9 +225,23 @@
           <p>{{ $store->description }}</p>
           <p>{{ $store->location }}</p>
         </div>
-        <!-- Miguel -->
-        <a href="/createorder">Go to Shop</a>
-        <!-- Miguel -->
+
+        <a href="{{route('products', $store->id)}}">Go to Shop</a>
+        <form action="{{ route('favorites') }}" method="POST">
+
+            @csrf
+
+            <input
+              type="hidden"
+              name="store_id"
+              value="{{ $store->id }}"
+            >
+
+            <button id=bt type="submit">
+              Add to Favorites
+            </button>
+
+          </form>
       </div>
       @endif($store->isApproved=="approved")
       @endforeach
@@ -219,6 +250,7 @@
 
   <footer>
     <p>&copy; 2024 Your Company. All rights reserved.</p>
+    <nav><ul><li><a href="botman">Bot Chat</a></li></ul></nav>
   </footer>
 </body>
 </html>

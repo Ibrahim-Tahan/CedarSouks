@@ -112,7 +112,7 @@
     @endif
 
     <div class="search-bar">
-        <form action="{{ route('search') }}" method="post">
+        <form action="{{ route('SearchStore') }}" method="post">
             @csrf
             <input type="text" class="search-input" placeholder="Search Store Name" name="name">
             <button class="search-button">Search</button>
