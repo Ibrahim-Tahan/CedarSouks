@@ -227,7 +227,7 @@
         </div>
 
         <a href="{{route('products', $store->id)}}">Go to Shop</a>
-        <form action="{{ route('favorites') }}" method="POST">
+        <form action="" method="POST">{{--Place this in action {{ route('favorites') }}--}}
 
             @csrf
 
