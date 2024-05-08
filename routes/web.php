@@ -21,7 +21,25 @@ Route::post('insertUserAddress2/{id}',[UserLocationController::class,'store2'])-
 Route::get('PinShopLocation',[StoreLocationController::class,'index']);
 Route::post('insertShopLocation/{id}',[StoreLocationController::class,'store'])->name('insertShopLocation');
 
-Route::get('makeEventindex',[EventController::class,'index']);
+Route::get('viewAllEvents/{id}',[EventController::class,'indexEvents'])->name('viewAllEvents');
+
+Route::get('makeEventindex/{id}',[EventController::class,'index'])->name('eventIndex');
+Route::post('addEvent',[EventController::class,'store'])->name('event.store');
+
+Route::get('viewEventProducts/{id}',[EventController::class,'show'])->name('event.showProducts');
+Route::get('addMoreProducts/{id}',[EventController::class,'indexMoreProducts'])->name('event.addMoreProducts');
+Route::post('addMoreProducts',[EventController::class,'storeMoreProducts'])->name('event.storeMoreProducts');
+
+Route::get('addProducts',[EventController::class,'productFormIndex'])->name('event.productFormIndex');
+Route::post('addProducts',[EventController::class,'storeProducts'])->name('event.storeProducts');
+
+Route::delete('deleteEvent/{id}',[EventController::class,'deleteEvent'])->name('event.deleteEvent');
+Route::delete('deleteEventProduct/{id}',[EventController::class,'delete'])->name('event.deleteProducts');
+
+
+
+
+
 
 
 //All the authentification route
@@ -62,7 +80,6 @@ Route::get('/registration/verify-email/{verification_code}', [CustomAuthControll
 
 
 //End of the authentification route
-
 
 
 

@@ -156,7 +156,7 @@
       <div class="option">
         <h3>Events</h3>
         <p>Create Events.</p>
-        <a href="/allorder">Events </a>
+        <a href="{{ route('viewAllEvents',['id'=> $data->id]) }}" >Events</a>
       </div>
       <div class="option">
     <h3>Chat with buyers</h3>
