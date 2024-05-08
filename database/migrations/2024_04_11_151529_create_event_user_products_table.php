@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId("eventId")->references("id")->on("events")->onDelete('cascade');
             $table->foreignId("productId")->references("id")->on("products")->onDelete('cascade');
             $table->double("bidding_price")->nullable();
-            $table->foreignId("userId")->references("id")->on("persons")->onDelete('cascade')->nullable();
+            $table->foreignId("userId")->nullable()->references("id")->on("persons")->onDelete('cascade');
             $table->timestamps();
         });
     }

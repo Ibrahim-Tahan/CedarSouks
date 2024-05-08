@@ -13,14 +13,8 @@ return new class extends Migration
     {
         Schema::create('order_stores', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('store_id')
-            ->references('id')
-            ->on('stores')
-            ->onDelete('cascade');
-            $table->foreignId('order_id')
-            ->references('id')
-            ->on('orders')
-            ->onDelete('cascade');
+            $table->foreignId('store_id')->references('id')->on('stores')->onDelete('cascade');
+            $table->foreignId('order_id')->references('id')->on('orders')->onDelete('cascade');
             $table->timestamps();
         });
     }
