@@ -10,6 +10,7 @@ use App\Http\Controllers\Order;
 use App\Http\Controllers\Admin;
 use App\Http\Controllers\BotManController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\CurrencyController;
 
 //miguel part of the project
 use App\Http\Controllers\CartController;
@@ -161,6 +162,10 @@ Route::post('/reports/{id}',[Order::class,'date'])->name('date');
 
 //Botman chat
 Route::match(['get', 'post'], '/botman', [BotManController::class,'handle']);
+
+//Converter
+Route::get('/converter', [CurrencyController::class,'converter'])->name('converter');
+Route::post('/converter', [CurrencyController::class,'convert'])->name('converter');
 
 //Favorite
 Route::post('/favorites', [FavoriteController::class,'favorite'])->name('favorites');

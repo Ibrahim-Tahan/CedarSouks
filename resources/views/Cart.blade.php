@@ -14,15 +14,15 @@
     background-color:gray;
   }
   .quantity-btn {
-    width: 30px; 
+    width: 30px;
     height: 30px;
     font-size: 20px;
 }
 .content-table {
     width:100%;
-    margin: 25px auto; 
+    margin: 25px auto;
     font-size: 0.9em;
-    min-width: 600px; 
+    min-width: 600px;
     border-radius: 5px;
     overflow: hidden;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
@@ -96,7 +96,7 @@
                     <td>{{ $itm->getProducts->price }}$</td>
                     <td>{{ $itm->getProducts->description }}</td>
                     <td>
-            <input type="number" name="quantity" class="quantity-input" value="{{ $itm->quantity }}" min="1" readonly>    
+            <input type="number" name="quantity" class="quantity-input" value="{{ $itm->quantity }}" min="1" readonly>
                     </td>
                    <td>
                         <form action="{{route('deleteProduct',['id'=>$itm->id]) }}" method="post">
@@ -108,7 +108,7 @@
             @endforeach
           <tr class="active-row">
     <td>Total Price:</td>
-    <td class="total-price">{{ $totalPrice }} $</td> 
+    <td class="total-price">{{ $totalPrice }} $</td>
 </tr>
             <tr>
                 <td>
@@ -118,6 +118,17 @@
             @csrf
             <button type="submit">Proceed to checkout with ({{ $totalPrice }}$)</button>
         </form>
+        <form action="{{ route('converter') }}" method="GET">
+            @csrf
+
+            <input
+            type="hidden"
+            name="prc_in_usd"
+            value="{{ $totalPrice }}"
+            >
+            <button type="submit">Check dollar  rate before checkout?</button>
+        </form>
+
     @endif
 </td>
 
