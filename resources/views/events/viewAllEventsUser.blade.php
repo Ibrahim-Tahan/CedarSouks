@@ -30,7 +30,7 @@
                 <h1>{{$event->getStore->name}}</h1>
                     <h5 class="card-title">{{$event->title}} - On: {{$event->date}}</h5>
                     <p class="card-text"><b>Description: </b>{{$event->description}}</p>
-                    <a href="{{route('event.addMoreProducts',['id'=>$event->id])}}" class="btn btn-primary">View Products</a>
+                    <a href="{{route('event.userJoinEvents',['id'=>$event->id])}}" class="btn btn-primary">View Products</a>
                 </div>
             </div>
         </div>

@@ -32,14 +32,28 @@ class EventController extends Controller
         $userevent->eventId = $event->id;
         $userevent->userId = $UserId;
 
-        $userevent->save;
+        $userevent->save();
 
         $storeId = $event->storeId;
-        $prods = Products::whereHas('getCategory', function ($query) use ($storeId){
-            $query->where('Store_id',$storeId);
-        })->get();
-        //return view('events.addMoreProducts', compact('event','prods'));
+        $eventProds = event_user_product::where('eventId', $event->id)->get();
 
+        return view('events.viewProductEvent', compact('event','eventProds'));
+    }
+
+
+    public function userProductBid(Request $request, $id){
+        $eventProd = event_user_product::findOrFail($id);
+        $event = Events::find($request->eventId);
+        $eventProd->update([
+            'bidding_price' => $request->input('bidding_price'),
+            'userId' => Session::get('loginId')
+        ]);
+
+        
+        $eventProds = event_user_product::where('eventId', $event->id)->get();
+
+        return view('events.viewProductEvent', compact('event','eventProds'));
+        
     }
 
 

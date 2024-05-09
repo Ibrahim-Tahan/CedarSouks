@@ -19,11 +19,6 @@
 @endsection
 
 @section('content')
-@if(Session::has('success'))
-<div class="success-message">
-    <p>{{Session::get('success')}}</p>
-</div>
-@endif
     <div class="content">
             <h2>Here are the products in the store chosen</h2>
 
@@ -32,25 +27,26 @@
                     <tr>
                         <th scope="col">Category</th>
                         <th scope="col">Product name</th>
-                        <th scope="col">Default Price</th>
-                        <th scope="col">Bidding Price</th>
+                        <th scope="col">Bidding Price Now</th>
+                        <th scope="col">New Bidding Price</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($prods as $prod)
-                        <tr>
-                            <form action="/addMoreProducts" method="POST">
-                                @csrf
-                                <input type="text" value="{{$event->id}}" name="eventId" id="eventId" hidden>
-                                <input type="text" value="{{$prod->id}}" name="productId" id="productId" hidden>
-                                <td>{{$prod->getCategory->name}}</td>
-                                <td>{{$prod->name}}</td>
-                                <td>${{$prod->price}}</td>
-                                <td><input type="number" class="form-control" placeholder="Starting Price" name="bidding_price" id="bidding_price" required></td>
-                                <td><button type="submit" class="btn-primary" id="addProductBtn">Add Product</button></td>
-                            </form>
-                        </tr>
+                    @foreach ($eventProds as $eventProd)
+                        <form action="/userProductBid/{{$eventProd->id}}" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <input type="text" value="{{$eventProd->eventId}}" name="eventId" id="eventId" hidden>
+                            <input type="text" value="{{$eventProd->productId}}" name="productId" id="productId" hidden>
+                            <tr>
+                                <td>{{$eventProd->getProducts->getCategory->name}}</td>
+                                <td>{{$eventProd->getProducts->name}}</td>
+                                <td>${{$eventProd->bidding_price}}</td>
+                                <td><input type="number" class="form-control" placeholder="Enter Your Bid" name="bidding_price" id="bidding_price" required></td>
+                                <td><input type="submit" class="btn btn-primary" id="addProductBtn" value="Add Product"></td>
+                            </tr>
+                        </form>
                     @endforeach
                 </tbody>
             </table>                      
@@ -63,14 +59,5 @@
             </div>
         
     </div>
-
-    <script>
-        var addProductBtn = document.getElementById('addProductBtn');
-    
-        addProductBtn.addEventListener('click', function() {
-            addProductBtn.disabled = true;
-        });
-    </script>
-    
 
 @endsection

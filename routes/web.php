@@ -38,7 +38,9 @@ Route::get('viewAllEvents/{id}',[EventController::class,'indexEvents'])->name('v
 
 
 Route::get('viewAllEventsUser',[EventController::class,'viewAllEventsUser'])->name('event.viewAllEventsUser');
+Route::get('viewEventProductsUser/{id}',[EventController::class,'userJoinEvents'])->name('event.userJoinEvents');
 
+Route::put('userProductBid/{id}',[EventController::class,'userProductBid'])->name('event.userProductBid');
 
 Route::get('makeEventindex/{id}',[EventController::class,'index'])->name('eventIndex');
 Route::post('addEvent',[EventController::class,'store'])->name('event.store');
