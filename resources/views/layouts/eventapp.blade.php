@@ -3,19 +3,18 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-<<<<<<<<< Temporary merge branch 1
 
-    <title>Title</title>
 
-    <link rel="stylesheet" href="{{ asset('css/eventstyle.css') }}">
+  
 
-=========
+    
+
+
 
     <title>Title</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
 
->>>>>>>>> Temporary merge branch 2
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 

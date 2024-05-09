@@ -20,6 +20,7 @@ use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\MessageController;
 //end of miguel part
 
 

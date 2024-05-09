@@ -226,7 +226,7 @@
           <p>{{ $store->location }}</p>
         </div>
 
-        <a href="{{route('products', $store->id)}}">Go to Shop</a>
+        <a href="{{route('products', $store->id)}}">Go to Shop</a><br>
         <a href="">Add to favorites</a>
         {{--<form action="{{ route('favorites') }}" method="POST">Place this in action
 
