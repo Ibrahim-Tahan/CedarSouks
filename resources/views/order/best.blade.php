@@ -37,7 +37,6 @@
     
     #quantity {
       font-size: 16px;
-      color: #999;
     }
   </style>
 </head>
@@ -51,8 +50,8 @@
 
   <script>
     // Replace the following values with your actual data
-    var bestItem = "{{ $maxProductName }}";
-    var quantity = "{{ $max }}";
+    var bestItem = "Product XYZ";
+    var quantity = 100;
 
     // Update the HTML elements with the actual values
     document.getElementById("item").innerHTML = bestItem;

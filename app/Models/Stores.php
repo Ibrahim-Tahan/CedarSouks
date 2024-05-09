@@ -4,11 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Maize\Markable\Markable;
+use Maize\Markable\Models\Like;
 
 class Stores extends Model
 {
     use HasFactory;
-    
+
     protected $fillable = [
         'name',
         'isApproved',
@@ -19,7 +21,7 @@ class Stores extends Model
         'longitude',
         'latitude',
     ];
-    
+
 
     public function getSeller(){
         return $this->belongsTo(persons::class,'sellerId','id');
@@ -36,6 +38,11 @@ class Stores extends Model
     public function getEvents(){
         return $this->hasMany(events::class,'storeId');
     }
-    
+    public function getReviews(){
+        return $this->hasMany(Reviews::class,'storeId');
+    }
 
+    protected static $marks = [
+        Like::class,
+    ];
 }

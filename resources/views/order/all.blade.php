@@ -127,7 +127,7 @@
                             </form>
                         </td>
                         <td>
-                        <form action="{{ route('order', ['id' => $obj->id]) }}" method="get">
+                        <form action="{{ route('top', ['id' => $obj->id]) }}" method="get">
                        @csrf
                                 <button type="submit">Top Seller </button>
                             </form>
