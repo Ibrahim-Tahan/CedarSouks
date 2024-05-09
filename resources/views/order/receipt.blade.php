@@ -100,7 +100,7 @@
         <td>{{$products->name}}</td>
         <td>{{$od->quantity}}</td>
         <td>{{$products->price}}</td>
-        <td>{{ $products->price * $od->quantity }}</td>
+        <td>{{$od->totalPrice}}</td>
       </tr>
     </tbody>
   </table>

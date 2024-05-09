@@ -209,7 +209,7 @@
           <p>{{ $store->location }}</p>
         </div>
         <!-- Miguel -->
-        <a href="{{ route('products', ['id' => $store->id]) }}">Go to Shop</a>
+        <a href="/createorder">Go to Shop</a>
         <!-- Miguel -->
       </div>
       @endif($store->isApproved=="approved")

@@ -15,10 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string("name");
             $table->longText("description");
-            $table->foreignId("store_id")
-            ->references('id')
-            ->on('stores')
-            ->onDelete('cascade');
+            $table->foreignId("store_id")->references('id')->on('stores')->onDelete('cascade');
             $table->timestamps();
         });
     }

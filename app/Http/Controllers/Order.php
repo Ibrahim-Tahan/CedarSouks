@@ -110,18 +110,6 @@ class Order extends Controller
 
 
 
-
-
-
-
-
-    
-
-
-
-
-    
-
 }
 
 

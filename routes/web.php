@@ -10,7 +10,13 @@ use App\Http\Controllers\Order;
 use App\Http\Controllers\Admin;
 
 //miguel part of the project
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\AuthenticationController;
 //end of miguel part
 
 
@@ -24,7 +30,20 @@ Route::post('insertUserAddress2/{id}',[UserLocationController::class,'store2'])-
 Route::get('PinShopLocation',[StoreLocationController::class,'index']);
 Route::post('insertShopLocation/{id}',[StoreLocationController::class,'store'])->name('insertShopLocation');
 
-Route::get('makeEventindex',[EventController::class,'index']);
+Route::get('viewAllEvents/{id}',[EventController::class,'indexEvents'])->name('viewAllEvents');
+
+Route::get('makeEventindex/{id}',[EventController::class,'index'])->name('eventIndex');
+Route::post('addEvent',[EventController::class,'store'])->name('event.store');
+
+Route::get('viewEventProducts/{id}',[EventController::class,'show'])->name('event.showProducts');
+Route::get('addMoreProducts/{id}',[EventController::class,'indexMoreProducts'])->name('event.addMoreProducts');
+Route::post('addMoreProducts',[EventController::class,'storeMoreProducts'])->name('event.storeMoreProducts');
+
+Route::get('addProducts',[EventController::class,'productFormIndex'])->name('event.productFormIndex');
+Route::post('addProducts',[EventController::class,'storeProducts'])->name('event.storeProducts');
+
+Route::delete('deleteEvent/{id}',[EventController::class,'deleteEvent'])->name('event.deleteEvent');
+Route::delete('deleteEventProduct/{id}',[EventController::class,'delete'])->name('event.deleteProducts');
 
 
 
@@ -74,26 +93,6 @@ Route::get('/registration/verify-email/{verification_code}', [CustomAuthControll
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Route::get('/addstore/{id}', [CustomAuth2::class, 'add'])->name('add');
 
 //put name to invoke this route in addstore.blade.php
@@ -127,26 +126,11 @@ Route::delete('/delete-type/{id}/{store_id}', [CustomAuth2::class, 'destroy2'])-
 
 //end of store features
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //admin features
 
 Route::get('/allstore',[Admin::class, 'store'])->name('allstore');
 Route::get('/allstore/{id}',[Admin::class, 'approve'])->name('approve');
-Route::post('/search',[Admin::class,'search2'])->name('search');
+Route::post('/SearchStore',[Admin::class,'search2'])->name('SearchStore');
 
 
 
@@ -156,34 +140,7 @@ Route::get('/alluser2/{id}',[Admin::class, 'update'])->name('update');
 Route::post('/user/{id}',[Admin::class, 'changepass'])->name('changepass');
 Route::match(['get', 'post'],'/filter',[Admin::class, 'filter'])->name('filter');
 Route::get('/admin',[Admin::class, 'adminpage']);
-
-
 //end admin features
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -223,8 +180,5 @@ Route::post('/reports/{id}',[Order::class,'date'])->name('date');
 
 
 //Miguel Part
-
-
-Route::get('products/{id}',[ProductsController::class,'index'])->name('products');
 
 

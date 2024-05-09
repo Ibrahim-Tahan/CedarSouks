@@ -20,7 +20,7 @@
 @section('content')
 
     <div class="content">
-        <h1>USER/SHOP SIDE</h1>
+        <h1>USER SIDE</h1>
         <form action="{{ route('insertUserLocation', ['id' => $user->id]) }}" method="post">
         @csrf
             <div class="mapform">

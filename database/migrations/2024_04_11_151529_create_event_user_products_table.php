@@ -13,20 +13,10 @@ return new class extends Migration
     {
         Schema::create('event_user_products', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("eventId")->
-            references("id")->
-            on("events")->
-            onDelete('cascade');
-            $table->foreignId("productId")->
-            references("id")->
-            on("products")->
-            onDelete('cascade');
-            $table->integer("bidding_price")->nullable();
-            $table->foreignId("userId")->
-            references("id")->
-            on("persons")->
-            onDelete('cascade');
-            $table->string("event_status");
+            $table->foreignId("eventId")->references("id")->on("events")->onDelete('cascade');
+            $table->foreignId("productId")->references("id")->on("products")->onDelete('cascade');
+            $table->double("bidding_price")->nullable();
+            $table->foreignId("userId")->nullable()->references("id")->on("persons")->onDelete('cascade');
             $table->timestamps();
         });
     }
