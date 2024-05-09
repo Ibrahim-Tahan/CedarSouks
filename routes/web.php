@@ -8,8 +8,20 @@ use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\CustomAuth2;
 use App\Http\Controllers\Order;
 use App\Http\Controllers\Admin;
-use App\Http\Controllers\StripeController;
-use App\Http\Controllers\MessageController;
+use App\Http\Controllers\BotManController;
+use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\CurrencyController;
+
+//miguel part of the project
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\SearchController;
+use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\AuthenticationController;
+//end of miguel part
+
 
 
 
@@ -85,7 +97,6 @@ Route::get('/registration/verify-email/{verification_code}', [CustomAuthControll
 
 
 
-
 Route::get('/addstore/{id}', [CustomAuth2::class, 'add'])->name('add');
 
 //put name to invoke this route in addstore.blade.php
@@ -137,6 +148,11 @@ Route::get('/admin',[Admin::class, 'adminpage']);
 
 
 
+
+
+
+
+
 //order feature
 
 Route::get('/allorder',[Order::class, 'order'])->name('allorder');
@@ -150,13 +166,19 @@ Route::get('detail2/{id}',[Order::class, 'detail2'])->name('detail2');
 
 Route::post('/reports/{id}',[Order::class,'date'])->name('date');
 
-use App\Http\Controllers\CartController;
-use App\Http\Controllers\WishlistController;
-use App\Http\Controllers\SearchController;
-use App\Http\Controllers\ProductsController;
-use App\Http\Controllers\CheckoutController;
-use App\Http\Controllers\PaymentController;
-use App\Http\Controllers\AuthenticationController;
+//Botman chat
+Route::match(['get', 'post'], '/botman', [BotManController::class,'handle']);
+
+//Converter
+Route::get('/converter', [CurrencyController::class,'converter'])->name('converter');
+Route::post('/converter', [CurrencyController::class,'convert'])->name('converter');
+
+//Favorite
+Route::post('/favorites', [FavoriteController::class,'favorite'])->name('favorites');
+
+//Review
+Route::match(['get', 'post'],'/reviews', [ReviewController::class,'reviewstore']);
+
 
 //Route::get('/', function () {
 // return view('index');
