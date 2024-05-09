@@ -208,9 +208,9 @@
           <p>{{ $store->description }}</p>
           <p>{{ $store->location }}</p>
         </div>
-        <!-- Miguel -->
-        <a href="/createorder">Go to Shop</a>
-        <!-- Miguel -->
+    
+        <a href="{{route('products', $store->id)}}">Go to Shop</a>
+
       </div>
       @endif($store->isApproved=="approved")
       @endforeach

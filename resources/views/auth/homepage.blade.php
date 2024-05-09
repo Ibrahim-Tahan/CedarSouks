@@ -159,6 +159,12 @@
         <a href="{{ route('viewAllEvents',['id'=> $data->id]) }}" >Events</a>
       </div>
       <div class="option">
+    <h3>Chat with buyers</h3>
+    <p>Check messages from buyers</p>
+    <a href="{{ route('messagesSeller', ['id' => Session::get('loginId')]) }}">Live chat</a>
+</div>
+
+      <div class="option">
         <h3>Logout</h3>
         <p>Sign out of your account.</p>
         <a hSlref="logout">Logout</a>

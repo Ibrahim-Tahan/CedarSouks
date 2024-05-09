@@ -8,17 +8,8 @@ use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\CustomAuth2;
 use App\Http\Controllers\Order;
 use App\Http\Controllers\Admin;
-
-//miguel part of the project
-use App\Http\Controllers\CartController;
-use App\Http\Controllers\WishlistController;
-use App\Http\Controllers\SearchController;
-use App\Http\Controllers\ProductsController;
-use App\Http\Controllers\CheckoutController;
-use App\Http\Controllers\PaymentController;
-use App\Http\Controllers\AuthenticationController;
-//end of miguel part
-
+use App\Http\Controllers\StripeController;
+use App\Http\Controllers\MessageController;
 
 
 
@@ -157,28 +148,49 @@ Route::get('detail2/{id}',[Order::class, 'detail2'])->name('detail2');
 
 Route::post('/reports/{id}',[Order::class,'date'])->name('date');
 
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\SearchController;
+use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\AuthenticationController;
+
+Route::get('/', function () {
+    return view('index');
+});
+
+Route::get('products/{id}',[ProductsController::class,'index'])->name('products');
+Route::get('CheckoutRoute',[Home::class,'Checkout']);
+//products section
+Route::get('cartView',[CartController::class,'cartView'])->name('cartView');
+Route::post('addToCart', [CartController::class,'AddToCart'])->name('addToCart');
+Route::get('deleteProduct/{id}',[CartController::class,'delete'])->name('deleteProduct');
+Route::post('StatusChange',[ChangeStatusController::class,'ChangeOrderStatus'])->name('StatusChange');
+Route::get('search/{id}',[SearchController::class,'search'])->name('search');
+//wishlist section
+Route::get('addToWishlist',[WishlistController::class,'index'])->name('addToWishlist');
+Route::post('wishlistRoute', [WishlistController::class,'AddToWishlist'])->name('wishlistRoute');
+Route::get('wishlist/{id}',[WishlistController::class,'destroy'])->name('wishlist');
+//checkout-status section
+Route::match(['get', 'post'], 'CheckoutPage/{id}', [CheckoutController::class, 'index'])->name('CheckoutPage');
+Route::post('ChangeOrderStatus',[CheckoutController::class,'ChangeStatus'])->name('ChangeOrderStatus');
+//cryptosection
+Route::get('CryptoPayment',[PaymentController::class,'CryptoView'])->name('CryptoPayment');
+Route::get('/pay', [PaymentController::class, 'redirectToGateway'])->name('pay');
 
 
+Route::get('/checkout', [StripeController::class,'index'])->name('checkout');
+Route::post('/session', [StripeController::class,'session'])->name('session');
+Route::get('/success', [StripeController::class,'success'])->name('success');
 
 
+Route::get('messagesSeller/{id}', [MessageController::class,'view'])->name('messagesSeller');
+Route::get('chatSeller/{sellerid}/{buyerid}',[MessageController::class,'chat'])->name('chatSeller');
+Route::post('selleraddmsg',[MessageController::class,'selleraddmsg'])->name('selleraddmsg');
+//end messages seller
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//Miguel Part
-
-
+//messages buyer
+Route::get('messagesbuyer/{id}',[MessageController::class,'indexBuyer'])->name('messagesBuyer');//buyer id
+Route::get('chatBuyer/{buyerid}/{sellerid}',[MessageController::class,'chatBuyer'])->name('chatBuyer');
+Route::post('buyeraddmsg',[MessageController::class,'buyeraddmsg'])->name('buyeraddmsg');
