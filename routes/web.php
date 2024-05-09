@@ -58,6 +58,8 @@ Route::get('verify/{token}', [CustomAuthController::class, 'verify'])->name('ver
 
 Route::post('searching', [CustomAuth2::class, 'searchstore'])->name('searchstore');
 
+Route::get('top/{id}',[Order::class, 'top'])->name('top');
+
 
 
 // Route for initiating the Google login process
@@ -156,9 +158,9 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\AuthenticationController;
 
-Route::get('/', function () {
-    return view('index');
-});
+//Route::get('/', function () {
+// return view('index');
+//});
 
 Route::get('products/{id}',[ProductsController::class,'index'])->name('products');
 Route::get('CheckoutRoute',[Home::class,'Checkout']);

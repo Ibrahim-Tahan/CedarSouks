@@ -110,6 +110,46 @@ class Order extends Controller
 
 
 
+    public function top($id)
+    {
+        $max = 0;
+        $maxProductName = null;
+    
+        $products = products::query()
+            ->join('categories', 'products.categoryId', '=', 'categories.id')
+            ->join('stores', 'categories.store_id', '=', 'stores.id')
+            ->where('stores.id', '=', $id)
+            ->select('products.id', 'products.name')
+            ->get();
+    
+        foreach ($products as $product) {
+            $orderDetails = order_details::query()
+                ->join('orders', 'order_details.orderId', '=', 'orders.id')
+                ->join('products', 'order_details.productId', '=', 'products.id')
+                ->where('products.id', '=', $product->id)
+                ->where('orders.status', '=', 'Checked')
+                ->select('order_details.orderId', 'order_details.productId', 'order_details.quantity', 'order_details.id')
+                ->get();
+    
+            $totalQuantity = 0;
+    
+            foreach ($orderDetails as $orderDetail) {
+                $totalQuantity += $orderDetail->quantity;
+            }
+    
+            if ($totalQuantity > $max) {
+                $max = $totalQuantity;
+                $maxProductName = $product->name;
+            }
+        }
+    
+        return view("order.top", compact('max', 'maxProductName'));
+    }
+
+
+
+
+
 }
 
 

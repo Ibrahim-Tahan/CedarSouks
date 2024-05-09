@@ -167,7 +167,7 @@
       <div class="option">
         <h3>Logout</h3>
         <p>Sign out of your account.</p>
-        <a hSlref="logout">Logout</a>
+        <a href="logout">Logout</a>
       </div>
     </div>
   </main>
