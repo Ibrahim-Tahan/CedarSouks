@@ -49,6 +49,11 @@ Route::delete('deleteEvent/{id}',[EventController::class,'deleteEvent'])->name('
 Route::delete('deleteEventProduct/{id}',[EventController::class,'delete'])->name('event.deleteProducts');
 
 
+
+
+
+
+
 //All the authentification route
 
 Route::get('/login', [CustomAuthController::class, 'login'])->name('login');
@@ -87,8 +92,6 @@ Route::get('/registration/verify-email/{verification_code}', [CustomAuthControll
 
 
 //End of the authentification route
-
-
 
 
 

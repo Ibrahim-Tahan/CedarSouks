@@ -9,13 +9,15 @@
         "amrshawky/laravel-currency": "^3.2",
         "botman/botman": "^2.8",
         "botman/driver-web": "^1.5",
-        "google/apiclient": "*",
+        "google/apiclient": "^2.15",
         "guzzlehttp/psr7": "^2.6",
         "illuminate/encryption": "*",
         "laravel/framework": "^11.0",
+        "laravel/socialite": "^5.13",
         "laravel/tinker": "^2.9",
         "livewire/livewire": "^3.4",
         "pusher/pusher-php-server": "^7.2",
+        "spatie/laravel-google-calendar": "^3.8",
         "stripe/stripe-php": "^14.5"
     },
     "require-dev": {
