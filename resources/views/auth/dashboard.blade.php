@@ -227,7 +227,8 @@
         </div>
 
         <a href="{{route('products', $store->id)}}">Go to Shop</a>
-        <form action="" method="POST">{{--Place this in action {{ route('favorites') }}--}}
+        <a href="">Add to favorites</a>
+        {{--<form action="{{ route('favorites') }}" method="POST">Place this in action
 
             @csrf
 
@@ -241,7 +242,7 @@
               Add to Favorites
             </button>
 
-          </form>
+        </form>--}}
       </div>
       @endif($store->isApproved=="approved")
       @endforeach

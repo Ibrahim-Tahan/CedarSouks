@@ -21,6 +21,5 @@ class FavoriteController extends Controller
         $favorite->userID=$request->user_id;
         $favorite->store_id=$request->store_id;
         $favorite->save();
-        return back();
     }
 }
