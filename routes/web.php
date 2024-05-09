@@ -23,6 +23,10 @@ Route::post('insertShopLocation/{id}',[StoreLocationController::class,'store'])-
 
 Route::get('viewAllEvents/{id}',[EventController::class,'indexEvents'])->name('viewAllEvents');
 
+
+Route::get('viewAllEventsUser',[EventController::class,'viewAllEventsUser'])->name('event.viewAllEventsUser');
+
+
 Route::get('makeEventindex/{id}',[EventController::class,'index'])->name('eventIndex');
 Route::post('addEvent',[EventController::class,'store'])->name('event.store');
 

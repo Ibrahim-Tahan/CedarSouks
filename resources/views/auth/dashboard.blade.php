@@ -182,7 +182,7 @@
     <h1>Welcome, {{$data->fullname}}</h1>
     <nav>
       <ul>
-        <li><a href="add-store.html">Add Order</a></li>
+        <li><a href="{{route('event.viewAllEventsUser')}}">View Events</a></li>
         <li><a href="update2">Change User Info</a></li>
         <li><a href="logout">Logout</a></li>
       </ul>

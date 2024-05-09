@@ -9,6 +9,7 @@ use App\Models\Products;
 use App\Models\event_user_product;
 use Carbon\Carbon;
 use App\Models\persons;
+use App\Models\event_user;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Spatie\GoogleCalendar\Event;
@@ -16,6 +17,33 @@ use Spatie\GoogleCalendar\Event;
 
 class EventController extends Controller
 {
+
+    public function viewAllEventsUser(){
+       $events = Events::get();
+
+        return view('events.viewAllEventsUser', compact('events'));
+    }
+
+    public function userJoinEvents($id){
+        $event = Events::find($id);
+        $UserId = Session::get('loginId');
+
+        $userevent = new event_user();
+        $userevent->eventId = $event->id;
+        $userevent->userId = $UserId;
+
+        $userevent->save;
+
+        $storeId = $event->storeId;
+        $prods = Products::whereHas('getCategory', function ($query) use ($storeId){
+            $query->where('Store_id',$storeId);
+        })->get();
+        //return view('events.addMoreProducts', compact('event','prods'));
+
+    }
+
+
+
     
     public function indexEvents($id){
         $stores = Stores::where('SellerId', $id)->get();
@@ -85,8 +113,6 @@ class EventController extends Controller
             'endDateTime'=> $endTime
         ]);
 
-
-
         $prods = Products::whereHas('getCategory', function ($query) use ($storeId){
             $query->where('Store_id',$storeId);
         })->get();
@@ -140,4 +166,7 @@ class EventController extends Controller
 
     }
     
+
+
+
 }
