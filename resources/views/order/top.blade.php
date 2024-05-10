@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Best-Selling Item</title>
+  <title>CedarSouks</title>
   <style>
     body {
       background-color: #f5f5f5;

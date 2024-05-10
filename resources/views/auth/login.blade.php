@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Login page</title>
+    <title>CedarSouks</title>
     <link rel="stylesheet" href="{{asset('css/app.css') }}">
   </head>
   <body>
@@ -28,7 +28,7 @@
           <label>Email</label>
         </div>
         <div class="txt_field">
-          <input type="text" required name="password">
+          <input type="password" required name="password">
           <span></span>
           <label>Password</label>
         </div>

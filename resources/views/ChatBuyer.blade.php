@@ -23,8 +23,9 @@
         @csrf
         <input type="hidden" name="buyerid" value="{{ $id }}">
         <input type="hidden" name="sellerid" value="{{ $seller->id }}">
-        <input type="text" name="sellermessage" id="sellerMessageInput" required placeholder="Type a message..." style="width: 85%">
-        <button id="sendButton" type="submit" style="width: 10%">Send</button>
+
+        <input type="text" name="sellermessage" class="form-control" id="sellerMessageInput" required placeholder="Type a message..." style="width: 85%">
+        <button id="sendButton" type="submit" class="btn-primary" style="width: 10%">Send</button>
       </form>
     </div>
 </div>

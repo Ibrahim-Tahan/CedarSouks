@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-  <title>Pusher Test</title>
+  <title>CedarSouks</title>
   <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
   <script>
 

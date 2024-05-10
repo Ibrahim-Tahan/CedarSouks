@@ -3,6 +3,7 @@
 
 <head>
   <link rel="stylesheet" type="text/css" href="{{ asset('css/style1.css') }}">
+  <title>CedarSouks</title>
 </head>
 
 <body>
