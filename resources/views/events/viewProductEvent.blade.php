@@ -44,7 +44,7 @@
                                 <td>{{$eventProd->getProducts->name}}</td>
                                 <td>${{$eventProd->bidding_price}}</td>
                                 <td><input type="number" class="form-control" placeholder="Enter Your Bid" name="bidding_price" id="bidding_price" required></td>
-                                <td><input type="submit" class="btn btn-primary" id="addProductBtn" value="Add Product"></td>
+                                <td><input type="submit" class="btn btn-primary" value="Bid Now"></td>
                             </tr>
                         </form>
                     @endforeach

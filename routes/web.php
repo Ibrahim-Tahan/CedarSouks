@@ -1,26 +1,28 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserLocationController;
-use App\Http\Controllers\StoreLocationController;
-use App\Http\Controllers\EventController;
-use App\Http\Controllers\CustomAuthController;
-use App\Http\Controllers\CustomAuth2;
-use App\Http\Controllers\Order;
-use App\Http\Controllers\Admin;
-use App\Http\Controllers\BotManController;
-use App\Http\Controllers\ReviewController;
-use App\Http\Controllers\CurrencyController;
 
-//miguel part of the project
-use App\Http\Controllers\CartController;
-use App\Http\Controllers\WishlistController;
-use App\Http\Controllers\SearchController;
-use App\Http\Controllers\ProductsController;
-use App\Http\Controllers\CheckoutController;
-use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\Admin;
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\BotManController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\CurrencyController;
+use App\Http\Controllers\CustomAuth2;
+use App\Http\Controllers\CustomAuthController;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\Order;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\SearchController;
+use App\Http\Controllers\StoreLocationController;
+use App\Http\Controllers\StripeController;
+use App\Http\Controllers\UserLocationController;
+use App\Http\Controllers\WishlistController;
+
 //end of miguel part
 
 

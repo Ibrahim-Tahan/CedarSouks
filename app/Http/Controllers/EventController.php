@@ -44,16 +44,18 @@ class EventController extends Controller
     public function userProductBid(Request $request, $id){
         $eventProd = event_user_product::findOrFail($id);
         $event = Events::find($request->eventId);
+        $prevBiddingPrice = $eventProd->bidding_price;
+        $newBiddingPrice = $request->input('bidding_price');
+        if ($prevBiddingPrice > $newBiddingPrice) {
+            $newBiddingPrice = $prevBiddingPrice;
+        }
         $eventProd->update([
-            'bidding_price' => $request->input('bidding_price'),
+            'bidding_price' => $newBiddingPrice,
             'userId' => Session::get('loginId')
         ]);
-
-        
+       
         $eventProds = event_user_product::where('eventId', $event->id)->get();
-
         return view('events.viewProductEvent', compact('event','eventProds'));
-        
     }
 
 
@@ -64,6 +66,8 @@ class EventController extends Controller
         
         $UserId = Session::get('loginId');
         $person = Persons::find($UserId);
+
+        
 
         return view("events.viewAllEvents",compact('stores','person'));
     }
