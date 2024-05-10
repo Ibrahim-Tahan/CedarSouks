@@ -12,6 +12,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Session;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Crypt;
+use App\Events\UserEvent;
 
 
 use App\Mail\RegisterMail;
@@ -153,10 +154,10 @@ class CustomAuthController extends Controller
              $data = persons::where('id', Session::get('loginId'))->first();
          }
          if ($data->user_type == 'Buyer') {
-
              return view('auth.dashboard', compact('data','stores'));
          } else {
-             return view('auth.homepage', compact('data'));
+            return view('auth.homepage', compact('data'));
+            
          }
      }
 

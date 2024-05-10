@@ -191,6 +191,6 @@
 
   var channel = pusher.subscribe('popup-channel');
   channel.bind('user-order', function(data) {
-    toastr.success(JSON.stringify(data));
+    toastr.success(data.name);
   });
 </script>

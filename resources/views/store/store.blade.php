@@ -1,99 +1,103 @@
 <html>
-  <head>
-    <title>Box for balad</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>bootstrap 5 footer design</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="{{ asset('css/style3.css') }}" />
-    <style type="text/css">
-      body {
-        background-color: #a2ded0;
-      }
-      .box1 {
-        background-color: #009879;
-        width: 25%;
-        height: 550px;
-        float: left;
-        margin-top: 5%;
-      }
-      input[type="button"] {
-    margin-left: 25%;
-    width: 50%;
-    height: 8%;
-    background-color: grey;
-    color: black;
-    border: 1px solid grey;
-    border-radius: 5px;
-    font-family: 'Montserrat', sans-serif;
-  }
-
-  input[type="button"]:hover {
-    background-color:#fe1e4f;;
-    color: white;
-    border-color:#fe1e4f;
-  }
-  table {
-			font-family: arial, sans-serif;
-			border-collapse: collapse;
-			width: 100%;
-		}
-
-		td, th {
-			border: 1px solid black;
-			text-align: left;
-			padding: 8px;
-		}
-
-
-
-
-
+<head>
+  <title>Box for balad</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>bootstrap 5 footer design</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="{{ asset('css/style3.css') }}" />
+  <style type="text/css">
+    body {
+      background-color: #a2ded0;
+    }
+    .box1 {
+      background-color: #009879;
+      width: 25%;
+      height: 550px;
+      float: left;
+      margin-top: 5%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px;
+    }
+    .box1 img {
+     width: 200px; /* Set the desired width */
+    height: 200px; /* Set the desired height */
+   }
+    input[type="button"] {
+      margin-left: 25%;
+      width: 50%;
+      height: 8%;
+      background-color: grey;
+      color: black;
+      border: 1px solid grey;
+      border-radius: 5px;
+      font-family: 'Montserrat', sans-serif;
+    }
+    input[type="button"]:hover {
+      background-color:#fe1e4f;;
+      color: white;
+      border-color:#fe1e4f;
+    }
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    td, th {
+      border: 1px solid black;
+      text-align: left;
+      padding: 8px;
+    }
   </style>
-  <body>
-    <nav>
-      <div class="logo">
-        <p>{{$store->name}}</p>
-      </div>
-      <ul>
-        <li><a  href="{{ route('home') }}">Home</a></li>
-        <li><a  href="{{ route('store.addCategory', $store->id) }}" >Add Categories</a></li>
-        <li><a href="{{ route('store.addProduct', ['storeId' => $store->id]) }}">Add Product</a></li>
-      </ul>
-    </nav>
-    <div class="content-items">
-      <br><br><br><br><h1 style="color:white; font-size: 82px;text-align:center;font-weight:bold">{{$store->name}}</h1><br>
-      <h3 style="text-align:center;color:#009879;">{{$store->address}}</h3><br>
-      <h3 style="text-align:center;color:white;font-weight:bold">
-        {{$store->description}}
-      </h3>
+</head>
+<body>
+  <nav>
+    <div class="logo">
+      <p>{{$store->name}}</p>
     </div>
-    <h2 style="color:white; font-size: 90px; text-align:center; font-weight:bold;margin-top:-200px;">Categories</h2>
-    @if($store->getCategories)
-    @foreach ($store->getCategories as $category)
-    <p style="margin-left:100px;font-size:58px;font-family:'Montserrat','Helvetica Neue',Arial,sans-serif;color:white;margin-top:60px;line-height:1.2;text-shadow:0 2px 4px rgba(0,0,0,0.5);">{{ $category->name }}</p>
-    <div class="container">
-      @if ($category->getProducts)
-      @foreach ($category->getProducts as $product)
-      <div class="box1">
-        <img src="{{ asset($product->path) }}" alt="Image belong here">
-        <h1>{{ $product->name }}</h1>
-        <p>{{ $product->description }}</p>
-        <p class="price">Price: ${{ $product->price }}</p>
-        <form action="{{ route('delete2', ['id' => $product->id, 'store_id' => $store->id]) }}" method="POST">
-          @csrf
-          @method('DELETE')
-          <button type="submit" class="delete-button">Delete</button>
-        </form>
-      </div>
-      @endforeach
-      @endif
+    <ul>
+      <li><a  href="{{ route('home') }}">Home</a></li>
+      <li><a  href="{{ route('store.addCategory', $store->id) }}" >Add Categories</a></li>
+      <li><a href="{{ route('store.addProduct', ['storeId' => $store->id]) }}">Add Product</a></li>
+    </ul>
+  </nav>
+  <div class="content-items">
+    <br><br><br><br>
+    <h1 style="color:white; font-size: 82px;text-align:center;font-weight:bold">{{$store->name}}</h1><br>
+    <h3 style="text-align:center;color:#009879;">{{$store->address}}</h3><br>
+    <h3 style="text-align:center;color:white;font-weight:bold">
+      {{$store->description}}
+    </h3>
+  </div>
+  <h2 style="color:white; font-size: 90px; text-align:center; font-weight:bold;margin-top:-200px;">Categories</h2>
+  @if($store->getCategories)
+  @foreach ($store->getCategories as $category)
+  <p style="margin-left:100px;font-size:58px;font-family:'Montserrat','Helvetica Neue',Arial,sans-serif;color:white;margin-top:60px;line-height:1.2;text-shadow:0 2px 4px rgba(0,0,0,0.5);">{{ $category->name }}</p>
+  <div class="container">
+    @if ($category->getProducts)
+    @foreach ($category->getProducts as $product)
+    <div class="box1">
+      <img src="{{ asset($product->path) }}" style=" width: 300px;height: 100px,max-width: 100%; max-height: 170px;" alt="Image belong here">
+      <h1>{{ $product->name }}</h1>
+      <p>{{ $product->description }}</p>
+      <p class="price">Price: ${{ $product->price }}</p>
+      <form action="{{ route('delete2', ['id' => $product->id, 'store_id' => $store->id]) }}" method="POST">
+        @csrf
+        @method('DELETE')
+        <button type="submit" class="delete-button">Delete</button>
+      </form>
     </div>
     @endforeach
     @endif
-    <h2 style="color:white; font-size: 152px;text-align:center;font-weight:bold;margin-top:100px;margin-bottom:100px;width:100%;">{{$store->name}}</h1>
-    <div class="content-items2">
+  </div>
+  @endforeach
+  @endif
+  <h2 style="color:white; font-size: 152px;text-align:center;font-weight:bold;margin-top:100px;margin-bottom:100px;width:100%;">{{$store->name}}</h1>
+  <divclass="content-items2">
   <!-- Your content goes here -->
 </div>
 
